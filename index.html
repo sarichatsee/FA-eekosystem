@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eek-o-system - Animal Safety Analyzer</title>
+    <meta name="description" content="Upload or take a photo to analyze if animals are venomous or poisonous and get immediate safety advice">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🐍</span>
+                <h1>Eek-o-system</h1>
+            </div>
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#safety">Safety Tips</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Identify Dangerous Animals Instantly</h2>
+                    <p>Upload or take a photo of any animal and our AI will analyze whether it's venomous or poisonous, providing immediate safety guidance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="container">
+                <div class="upload-container">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt upload-icon" aria-hidden="true"></i>
+                            <h3>Upload or Take a Photo</h3>
+                            <p>Drag and drop an image here, or click to select a file</p>
+                            <div class="upload-buttons">
+                                <button type="button" class="btn btn-primary" id="selectFileBtn">
+                                    <i class="fas fa-folder-open" aria-hidden="true"></i>
+                                    Choose File
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="takePictureBtn">
+                                    <i class="fas fa-camera" aria-hidden="true"></i>
+                                    Take Picture
+                                </button>
+                            </div>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;" aria-label="Select image file">
+                        <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" aria-label="Take picture">
+                    </div>
+                    
+                    <!-- Image Preview -->
+                    <div class="image-preview" id="imagePreview" style="display: none;">
+                        <div class="preview-container">
+                            <img id="previewImage" alt="Uploaded image preview">
+                            <button class="remove-image" id="removeImage" aria-label="Remove image">
+                                <i class="fas fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary analyze-btn" id="analyzeBtn">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            Analyze Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Results -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="container">
+                <div class="results-container">
+                    <div class="loading" id="loadingSpinner">
+                        <div class="spinner"></div>
+                        <p>Analyzing image...</p>
+                    </div>
+                    
+                    <div class="results-content" id="resultsContent" style="display: none;">
+                        <h3>Analysis Results</h3>
+                        <div class="result-card" id="resultCard">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medical Advice Chatbot Section -->
+        <section class="medical-chatbot-section">
+            <div class="container">
+                <div class="medical-chatbot-header">
+                    <div class="header-content">
+                        <div class="header-text">
+                            <h2>
+                                <i class="fas fa-user-md" aria-hidden="true"></i>
+                                Medical Advice Assistant
+                            </h2>
+                            <p>Get instant medical guidance for animal encounters, bites, stings, and emergency situations. Our AI-powered medical assistant provides evidence-based advice to help you make informed decisions about seeking treatment.</p>
+                        </div>
+                        <div class="medical-badges">
+                            <span class="badge badge-primary">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                24/7 Available
+                            </span>
+                            <span class="badge badge-secondary">
+                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                                HIPAA Compliant
+                            </span>
+                            <span class="badge badge-warning">
+                                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                                Emergency? Call 911
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="medical-chatbot-container">
+                    <div class="chatbot-disclaimer">
+                        <div class="disclaimer-content">
+                            <h4>
+                                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                Important Disclaimer
+                            </h4>
+                            <p>This AI assistant provides general medical information and guidance. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek immediate medical attention for serious symptoms or emergencies.</p>
+                        </div>
+                    </div>
+
+                    <div class="medical-chat-interface">
+                        <div class="chat-header">
+                            <div class="chat-status">
+                                <div class="status-indicator online"></div>
+                                <span>Medical AI Assistant - Online</span>
+                            </div>
+                            <div class="chat-actions">
+                                <button class="btn-icon" id="clearMedicalChat" aria-label="Clear chat history">
+                                    <i class="fas fa-broom" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn-icon" id="downloadMedicalChat" aria-label="Download chat history">
+                                    <i class="fas fa-download" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="medical-chat-messages" id="medicalChatMessages">
+                            <div class="message medical-bot-message">
+                                <div class="message-avatar">
+                                    <i class="fas fa-user-md" aria-hidden="true"></i>
+                                </div>
+                                <div class="message-content">
+                                    <div class="message-header">
+                                        <span class="sender-name">Medical AI Assistant</span>
+                                        <span class="message-time">Now</span>
+                                    </div>
+                                    <div class="message-text">
+                                        Hello! I'm your medical AI assistant. I can help you with:
+                                        <ul>
+                                            <li>🐍 Snake bite first aid and treatment</li>
+                                            <li>🕷️ Spider bite identification and care</li>
+                                            <li>🐝 Insect sting reactions and allergies</li>
+                                            <li>🦂 Scorpion sting management</li>
+                                            <li>🐕 Animal bite wound care</li>
+                                            <li>💊 When to seek emergency care</li>
+                                        </ul>
+                                        What medical question can I help you with today?
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-questions">
+                            <h4>Quick Questions:</h4>
+                            <div class="quick-question-buttons">
+                                <button class="quick-question-btn" data-question="I was bitten by a snake, what should I do immediately?">
+                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                                    Snake Bite Emergency
+                                </button>
+                                <button class="quick-question-btn" data-question="How do I know if a spider bite is dangerous?">
+                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                                    Spider Bite Assessment
+                                </button>
+                                <button class="quick-question-btn" data-question="I'm having an allergic reaction to a bee sting, what should I do?">
+                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                                    Allergic Reaction
+                                </button>
+                                <button class="quick-question-btn" data-question="When should I go to the emergency room for an animal bite?">
+                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                                    When to Seek ER Care
+                                </button>
+                                <button class="quick-question-btn" data-question="How do I properly clean and treat a wound from an animal bite?">
+                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                                    Wound Care
+                                </button>
+                                <button class="quick-question-btn" data-question="What are the signs of infection I should watch for?">
+                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                                    Infection Signs
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="medical-chat-input-container">
+                            <div class="input-wrapper">
+                                <textarea 
+                                    id="medicalChatInput" 
+                                    placeholder="Describe your symptoms, situation, or ask a medical question..."
+                                    aria-label="Medical question input"
+                                    rows="2"
+                                ></textarea>
+                                <div class="input-actions">
+                                    <button class="btn-icon" id="attachSymptoms" aria-label="Attach symptom checklist">
+                                        <i class="fas fa-list-check" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn-icon" id="voiceInput" aria-label="Voice input">
+                                        <i class="fas fa-microphone" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-primary" id="sendMedicalMessage">
+                                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                        Send
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="input-footer">
+                                <small>
+                                    <i class="fas fa-lock" aria-hidden="true"></i>
+                                    Your conversations are private and secure. 
+                                    <a href="#privacy" aria-label="Privacy policy">Privacy Policy</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Quick Actions -->
+                    <div class="emergency-actions">
+                        <h4>
+                            <i class="fas fa-ambulance" aria-hidden="true"></i>
+                            Emergency Quick Actions
+                        </h4>
+                        <div class="emergency-buttons">
+                            <button class="emergency-btn call-911" onclick="callEmergency()">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <span>Call 911</span>
+                                <small>Life-threatening emergency</small>
+                            </button>
+                            <button class="emergency-btn poison-control" onclick="callPoisonControl()">
+                                <i class="fas fa-flask" aria-hidden="true"></i>
+                                <span>Poison Control</span>
+                                <small>1-800-222-1222</small>
+                            </button>
+                            <button class="emergency-btn find-hospital" onclick="findNearestHospital()">
+                                <i class="fas fa-hospital" aria-hidden="true"></i>
+                                <span>Find Hospital</span>
+                                <small>Nearest emergency room</small>
+                            </button>
+                            <button class="emergency-btn telemedicine" onclick="startTelemedicine()">
+                                <i class="fas fa-video" aria-hidden="true"></i>
+                                <span>Telemedicine</span>
+                                <small>Video consultation</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Flowise Integration Container -->
+                    <div class="flowise-container" id="flowiseContainer" style="display: none;">
+                        <div class="flowise-header">
+                            <h4>
+                                <i class="fas fa-brain" aria-hidden="true"></i>
+                                Advanced Medical AI (Flowise)
+                            </h4>
+                            <button class="btn-close" id="closeFlowise" aria-label="Close Flowise chat">
+                                <i class="fas fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="flowise-content" id="flowiseContent">
+                            <!-- Flowise chatbot will be embedded here -->
+                            <div class="flowise-placeholder">
+                                <i class="fas fa-cog fa-spin" aria-hidden="true"></i>
+                                <p>Loading advanced medical AI...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chatbot -->
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <h4>
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                    AI Safety Assistant
+                </h4>
+                <button class="chatbot-toggle" id="chatbotToggle" aria-label="Toggle chatbot">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            Hello! I'm here to help you identify dangerous animals and provide safety advice. Upload an image to get started, or ask me any questions about animal safety.
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about animal safety..." aria-label="Chat input">
+                    <button id="sendMessage" aria-label="Send message">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About Eek-o-system</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        <h3>Instant Safety Analysis</h3>
+                        <p>Our advanced AI quickly identifies potentially dangerous animals and provides immediate safety recommendations.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                        <h3>Mobile-Friendly</h3>
+                        <p>Take pictures directly from your phone's camera or upload existing photos for instant analysis.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                        <h3>Emergency Guidance</h3>
+                        <p>Get clear instructions on whether immediate medical attention is needed and what steps to take.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety Tips Section -->
+        <section id="safety" class="safety-section">
+            <div class="container">
+                <h2>Safety Tips</h2>
+                <div class="safety-tips">
+                    <div class="tip-card danger">
+                        <h3>⚠️ If Bitten or Stung</h3>
+                        <ul>
+                            <li>Stay calm and don't panic</li>
+                            <li>Remove any jewelry near the bite</li>
+                            <li>Keep the affected area below heart level</li>
+                            <li>Seek immediate medical attention</li>
+                            <li>Call emergency services if severe symptoms occur</li>
+                        </ul>
+                    </div>
+                    <div class="tip-card warning">
+                        <h3>🚨 Emergency Signs</h3>
+                        <ul>
+                            <li>Difficulty breathing</li>
+                            <li>Severe swelling</li>
+                            <li>Rapid pulse</li>
+                            <li>Dizziness or fainting</li>
+                            <li>Severe pain or burning</li>
+                        </ul>
+                    </div>
+                    <div class="tip-card info">
+                        <h3>🛡️ Prevention</h3>
+                        <ul>
+                            <li>Wear protective clothing in nature</li>
+                            <li>Use a flashlight in dark areas</li>
+                            <li>Don't disturb animals</li>
+                            <li>Check shoes and clothing</li>
+                            <li>Stay on marked trails</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Emergency Contacts</h3>
+                    <p><strong>Emergency:</strong> 911</p>
+                    <p><strong>Poison Control:</strong> 1-800-222-1222</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Disclaimer</h3>
+                    <p>This tool provides general guidance only. Always seek professional medical advice for actual emergencies.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Eek-o-system</h3>
+                    <p>&copy; 2025 Animal Safety Analyzer. Built for educational purposes.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
