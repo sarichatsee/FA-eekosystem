@@ -17,6 +17,33 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Botpress Webchat -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+    <style>
+      #medical-webchat .bpWebchat {
+        position: unset;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      #medical-webchat .bpFab {
+        display: none;
+      }
+      
+      .botpress-chat-container {
+        width: 100%;
+        height: 600px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+    </style>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -163,99 +190,18 @@
                                 <span>Medical AI Assistant - Online</span>
                             </div>
                             <div class="chat-actions">
-                                <button class="btn-icon" id="clearMedicalChat" aria-label="Clear chat history">
-                                    <i class="fas fa-broom" aria-hidden="true"></i>
+                                <button class="btn-icon" id="refreshMedicalChat" aria-label="Refresh chat">
+                                    <i class="fas fa-refresh" aria-hidden="true"></i>
                                 </button>
-                                <button class="btn-icon" id="downloadMedicalChat" aria-label="Download chat history">
-                                    <i class="fas fa-download" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="medical-chat-messages" id="medicalChatMessages">
-                            <div class="message medical-bot-message">
-                                <div class="message-avatar">
-                                    <i class="fas fa-user-md" aria-hidden="true"></i>
-                                </div>
-                                <div class="message-content">
-                                    <div class="message-header">
-                                        <span class="sender-name">Medical AI Assistant</span>
-                                        <span class="message-time">Now</span>
-                                    </div>
-                                    <div class="message-text">
-                                        Hello! I'm your medical AI assistant. I can help you with:
-                                        <ul>
-                                            <li>🐍 Snake bite first aid and treatment</li>
-                                            <li>🕷️ Spider bite identification and care</li>
-                                            <li>🐝 Insect sting reactions and allergies</li>
-                                            <li>🦂 Scorpion sting management</li>
-                                            <li>🐕 Animal bite wound care</li>
-                                            <li>💊 When to seek emergency care</li>
-                                        </ul>
-                                        What medical question can I help you with today?
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="quick-questions">
-                            <h4>Quick Questions:</h4>
-                            <div class="quick-question-buttons">
-                                <button class="quick-question-btn" data-question="I was bitten by a snake, what should I do immediately?">
-                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                                    Snake Bite Emergency
-                                </button>
-                                <button class="quick-question-btn" data-question="How do I know if a spider bite is dangerous?">
-                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                                    Spider Bite Assessment
-                                </button>
-                                <button class="quick-question-btn" data-question="I'm having an allergic reaction to a bee sting, what should I do?">
-                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                                    Allergic Reaction
-                                </button>
-                                <button class="quick-question-btn" data-question="When should I go to the emergency room for an animal bite?">
-                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                                    When to Seek ER Care
-                                </button>
-                                <button class="quick-question-btn" data-question="How do I properly clean and treat a wound from an animal bite?">
-                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                                    Wound Care
-                                </button>
-                                <button class="quick-question-btn" data-question="What are the signs of infection I should watch for?">
-                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                                    Infection Signs
+                                <button class="btn-icon" id="fullscreenMedicalChat" aria-label="Fullscreen chat">
+                                    <i class="fas fa-expand" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="medical-chat-input-container">
-                            <div class="input-wrapper">
-                                <textarea 
-                                    id="medicalChatInput" 
-                                    placeholder="Describe your symptoms, situation, or ask a medical question..."
-                                    aria-label="Medical question input"
-                                    rows="2"
-                                ></textarea>
-                                <div class="input-actions">
-                                    <button class="btn-icon" id="attachSymptoms" aria-label="Attach symptom checklist">
-                                        <i class="fas fa-list-check" aria-hidden="true"></i>
-                                    </button>
-                                    <button class="btn-icon" id="voiceInput" aria-label="Voice input">
-                                        <i class="fas fa-microphone" aria-hidden="true"></i>
-                                    </button>
-                                    <button class="btn btn-primary" id="sendMedicalMessage">
-                                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                        Send
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="input-footer">
-                                <small>
-                                    <i class="fas fa-lock" aria-hidden="true"></i>
-                                    Your conversations are private and secure. 
-                                    <a href="#privacy" aria-label="Privacy policy">Privacy Policy</a>
-                                </small>
-                            </div>
+                        <!-- Botpress Medical Chat Integration -->
+                        <div class="botpress-chat-container">
+                            <div id="medical-webchat"></div>
                         </div>
                     </div>
 
@@ -427,5 +373,48 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Botpress Medical Chat Initialization -->
+    <script>
+        // Initialize Botpress Medical Chat
+        window.botpress.on("webchat:ready", () => {
+            window.botpress.open();
+        });
+        
+        window.botpress.init({
+            "botId": "9539a481-22d8-4b5b-90fa-38c0e17e5ca2",
+            "configuration": {
+                "website": {},
+                "email": {},
+                "phone": {},
+                "termsOfService": {},
+                "privacyPolicy": {}
+            },
+            "clientId": "5266c785-ef0e-419a-9370-2972bd1f057b",
+            "selector": "#medical-webchat"
+        });
+
+        // Handle refresh button
+        document.getElementById('refreshMedicalChat')?.addEventListener('click', () => {
+            window.botpress.close();
+            setTimeout(() => {
+                window.botpress.open();
+            }, 500);
+        });
+
+        // Handle fullscreen button
+        document.getElementById('fullscreenMedicalChat')?.addEventListener('click', () => {
+            const chatContainer = document.querySelector('.botpress-chat-container');
+            if (chatContainer) {
+                if (chatContainer.requestFullscreen) {
+                    chatContainer.requestFullscreen();
+                } else if (chatContainer.webkitRequestFullscreen) {
+                    chatContainer.webkitRequestFullscreen();
+                } else if (chatContainer.msRequestFullscreen) {
+                    chatContainer.msRequestFullscreen();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
