@@ -1,372 +1,451 @@
-/* Reset and Base Styles */
-* {
+/*
+    Eek-o-system Stylesheet
+    ---
+    Global styles, layout, components, and responsive design.
+    NOTE: This CSS is designed to work with the provided index.html AS-IS,
+    without any HTML modifications.
+*/
+
+/* --- 0. CSS Variables (Theming & Consistency) --- */
+:root {
+    --primary-color: #007bff; /* Blue for primary actions/branding */
+    --secondary-color: #6c757d; /* Gray for secondary actions */
+    --accent-color: #28a745; /* Green for success/positive feedback */
+    --warning-color: #ffc107; /* Yellow for warnings */
+    --danger-color: #dc3545; /* Red for danger/errors */
+
+    --text-color: #343a40; /* Dark gray for main text */
+    --light-text-color: #f8f9fa; /* Light text for dark backgrounds */
+    --heading-color: #212529; /* Even darker for headings */
+
+    --bg-light: #f8f9fa; /* Light background */
+    --bg-medium: #e9ecef; /* Medium background for contrast */
+    --bg-dark: #343a40; /* Dark background for footer/sections */
+
+    --border-color: #dee2e6; /* Light border */
+    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+    --font-family-base: 'Inter', sans-serif;
+    --font-size-base: 1rem; /* 16px */
+    --line-height-base: 1.6;
+
+    --spacing-xs: 0.5rem; /* 8px */
+    --spacing-sm: 1rem; /* 16px */
+    --spacing-md: 1.5rem; /* 24px */
+    --spacing-lg: 2rem; /* 32px */
+    --spacing-xl: 3rem; /* 48px */
+
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 0.75rem;
+}
+
+/* --- 1. Global Reset & Base Styles --- */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    /* Accessible Color Palette */
-    --primary-color: #2563eb;      /* Blue - WCAG AAA compliant */
-    --primary-dark: #1d4ed8;       /* Darker blue for hover states */
-    --secondary-color: #059669;     /* Green - WCAG AAA compliant */
-    --secondary-dark: #047857;      /* Darker green */
-    --danger-color: #dc2626;        /* Red - WCAG AAA compliant */
-    --danger-light: #fef2f2;        /* Light red background */
-    --warning-color: #d97706;       /* Orange - WCAG AAA compliant */
-    --warning-light: #fffbeb;       /* Light orange background */
-    --info-color: #0891b2;          /* Cyan - WCAG AAA compliant */
-    --info-light: #f0f9ff;          /* Light blue background */
-    
-    /* Neutral Colors */
-    --gray-50: #f8fafc;
-    --gray-100: #f1f5f9;
-    --gray-200: #e2e8f0;
-    --gray-300: #cbd5e1;
-    --gray-400: #94a3b8;
-    --gray-500: #64748b;
-    --gray-600: #475569;
-    --gray-700: #334155;
-    --gray-800: #1e293b;
-    --gray-900: #0f172a;
-    
-    /* Text Colors */
-    --text-primary: var(--gray-900);
-    --text-secondary: var(--gray-600);
-    --text-muted: var(--gray-500);
-    --text-white: #ffffff;
-    
-    /* Background Colors */
-    --bg-primary: #ffffff;
-    --bg-secondary: var(--gray-50);
-    --bg-tertiary: var(--gray-100);
-    
-    /* Spacing */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
-    --space-3xl: 4rem;
-    
-    /* Typography */
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 2rem;
-    --font-size-4xl: 2.5rem;
-    
-    /* Border Radius */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    
-    /* Transitions */
-    --transition-fast: 150ms ease-in-out;
-    --transition-normal: 300ms ease-in-out;
-    --transition-slow: 500ms ease-in-out;
+html {
+    scroll-behavior: smooth;
+    font-size: 100%; /* Ensures 1rem = 16px unless browser default changes */
 }
 
-/* Base Typography */
 body {
-    font-family: var(--font-family);
+    font-family: var(--font-family-base);
     font-size: var(--font-size-base);
-    line-height: 1.6;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    overflow-x: hidden;
+    line-height: var(--line-height-base);
+    color: var(--text-color);
+    background-color: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: var(--space-md);
+    font-family: var(--font-family-base);
+    color: var(--heading-color);
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
 }
 
-h1 { font-size: var(--font-size-3xl); }
-h2 { font-size: var(--font-size-2xl); }
-h3 { font-size: var(--font-size-xl); }
-h4 { font-size: var(--font-size-lg); }
+h1 { font-size: 2.8rem; } /* Approx 45px */
+h2 { font-size: 2.2rem; } /* Approx 35px */
+h3 { font-size: 1.8rem; } /* Approx 29px */
+h4 { font-size: 1.4rem; } /* Approx 22px */
+h5 { font-size: 1.2rem; } /* Approx 19px */
+h6 { font-size: 1rem; }   /* Approx 16px */
 
-p {
-    margin-bottom: var(--space-md);
-    color: var(--text-secondary);
-}
-
-/* Accessibility */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--primary-color);
-    color: var(--text-white);
-    padding: 8px;
+/* Links */
+a {
+    color: var(--primary-color);
     text-decoration: none;
-    border-radius: var(--radius-sm);
-    z-index: 1000;
-    font-weight: 600;
+    transition: color 0.2s ease-in-out;
 }
 
-.skip-link:focus {
-    top: 6px;
+a:hover,
+a:focus {
+    color: #0056b3; /* Darker primary for hover */
+    text-decoration: underline;
 }
 
-/* Focus styles for better accessibility */
-*:focus {
+/* Lists */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 0.5em; /* Spacing for list items */
+}
+
+/* Buttons (Base Styles) */
+button {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
 
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
+/* Form Elements (General) */
+input[type="text"],
+input[type="file"],
+input[type="email"],
+textarea {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    width: 100%;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-/* Container */
+input:focus-visible,
+textarea:focus-visible {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* --- 2. Layout & Utilities --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-md);
+    padding: 0 var(--spacing-md);
 }
 
-/* Header */
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 8px 12px;
+    z-index: 1000;
+    transition: top 0.3s ease-in-out;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* --- 3. Header --- */
 .header {
-    background: var(--bg-primary);
-    box-shadow: var(--shadow-sm);
+    background-color: var(--bg-light);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: var(--shadow-light);
 }
 
 .header .container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: var(--space-md);
+    align-items: center;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: 0.5rem;
 }
 
 .logo-icon {
-    font-size: var(--font-size-2xl);
+    font-size: 2.5rem; /* Larger icon */
+    line-height: 1;
 }
 
 .logo h1 {
-    font-size: var(--font-size-xl);
+    font-size: 1.8rem; /* Consistent with h3, but slightly larger for logo */
     margin: 0;
-    color: var(--primary-color);
+    color: var(--heading-color);
 }
 
 .nav ul {
     display: flex;
-    list-style: none;
-    gap: var(--space-lg);
+    gap: var(--spacing-md);
 }
 
 .nav a {
-    text-decoration: none;
-    color: var(--text-secondary);
+    color: var(--heading-color);
     font-weight: 500;
-    transition: color var(--transition-fast);
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    position: relative;
 }
 
-.nav a:hover,
-.nav a:focus {
-    color: var(--primary-color);
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+.nav a:hover::after,
+.nav a:focus::after {
+    width: 100%;
 }
 
 .menu-toggle {
-    display: none;
-    flex-direction: column;
+    display: none; /* Hidden on desktop by default */
     background: none;
     border: none;
-    cursor: pointer;
-    padding: var(--space-sm);
-    gap: 4px;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    padding: 0;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .menu-toggle span {
-    width: 25px;
+    display: block;
+    width: 100%;
     height: 3px;
-    background: var(--text-primary);
-    transition: var(--transition-fast);
+    background-color: var(--heading-color);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
 }
 
-/* Main Content */
-.main {
-    min-height: calc(100vh - 120px);
+/* This assumes JavaScript will add a class to the button or header to indicate active state */
+/* For example, if JS adds 'menu-active' to .menu-toggle */
+.menu-toggle.menu-active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.menu-active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.menu-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Hero Section */
+
+/* --- 4. Hero Section --- */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: var(--text-white);
-    padding: var(--space-3xl) 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random/1600x900/?jungle,animals,nature') no-repeat center center/cover;
+    color: var(--light-text-color);
     text-align: center;
+    padding: var(--spacing-xl) 0;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content h2 {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--space-md);
-    color: var(--text-white);
+    font-size: 3.5rem; /* Larger for hero heading */
+    margin-bottom: var(--spacing-md);
+    color: var(--light-text-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
-    font-size: var(--font-size-lg);
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 600px;
+    font-size: 1.3rem;
+    max-width: 700px;
     margin: 0 auto;
+    opacity: 0.9;
 }
 
-/* Upload Section */
-.upload-section {
-    padding: var(--space-3xl) 0;
-    background: var(--bg-secondary);
+/* --- 5. Buttons (Specific Styles) --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border-color: var(--primary-color);
 }
 
-.upload-container {
-    max-width: 600px;
-    margin: 0 auto;
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue */
+    border-color: #0056b3;
 }
 
-.upload-area {
-    border: 2px dashed var(--gray-300);
-    border-radius: var(--radius-lg);
-    padding: var(--space-3xl);
-    text-align: center;
-    background: var(--bg-primary);
-    transition: border-color var(--transition-fast);
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darker gray */
+    border-color: #5a6268;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.btn-icon:hover {
+    background-color: var(--bg-medium);
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
     cursor: pointer;
 }
 
-.upload-area:hover,
-.upload-area.dragover {
-    border-color: var(--primary-color);
-    background: var(--info-light);
+.btn-close:hover {
+    color: var(--danger-color);
 }
 
-.upload-content {
-    pointer-events: none;
+/* --- 6. Upload Section --- */
+.upload-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-medium);
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.upload-area {
+    background-color: #fff;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    max-width: 600px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-light);
 }
 
 .upload-icon {
-    font-size: var(--font-size-4xl);
-    color: var(--gray-400);
-    margin-bottom: var(--space-md);
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
 }
 
 .upload-area h3 {
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.upload-area p {
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
 }
 
 .upload-buttons {
     display: flex;
-    gap: var(--space-md);
     justify-content: center;
-    margin-top: var(--space-lg);
-    pointer-events: auto;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
-/* Buttons */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-lg);
-    border: none;
-    border-radius: var(--radius-md);
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    font-size: var(--font-size-base);
-    line-height: 1;
-}
+/* Original file inputs are hidden by inline style in HTML.
+   CSS will not control initial visibility here, but can style the preview
+   once JavaScript makes it visible. */
 
-.btn-primary {
-    background: var(--primary-color);
-    color: var(--text-white);
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-    background: var(--primary-dark);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-secondary {
-    background: var(--gray-200);
-    color: var(--text-primary);
-}
-
-.btn-secondary:hover,
-.btn-secondary:focus {
-    background: var(--gray-300);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-danger {
-    background: var(--danger-color);
-    color: var(--text-white);
-}
-
-.btn-danger:hover,
-.btn-danger:focus {
-    background: #b91c1c;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-
-/* Image Preview */
 .image-preview {
-    margin-top: var(--space-xl);
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-light);
     text-align: center;
+    max-width: 600px;
+    width: 100%;
+    /* display: none; is in HTML, so JS must add a class like 'active' to show */
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
 }
+
+/* JavaScript would toggle 'display: flex' on .image-preview */
+
 
 .preview-container {
     position: relative;
-    display: inline-block;
-    margin-bottom: var(--space-lg);
-    border-radius: var(--radius-lg);
+    width: 100%;
+    height: 250px; /* Fixed height for preview */
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    border-radius: var(--border-radius-md);
+    background-color: var(--bg-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .preview-container img {
-    max-width: 100%;
-    max-height: 400px;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure image fits without cropping */
     display: block;
 }
 
 .remove-image {
     position: absolute;
-    top: var(--space-sm);
-    right: var(--space-sm);
-    background: var(--danger-color);
-    color: var(--text-white);
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    background-color: rgba(220, 53, 69, 0.8);
+    color: var(--light-text-color);
     border: none;
     border-radius: 50%;
     width: 32px;
@@ -374,44 +453,53 @@ textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background var(--transition-fast);
+    transition: background-color 0.2s ease-in-out;
 }
 
-.remove-image:hover,
-.remove-image:focus {
-    background: #b91c1c;
+.remove-image:hover {
+    background-color: var(--danger-color);
 }
 
 .analyze-btn {
-    font-size: var(--font-size-lg);
-    padding: var(--space-lg) var(--space-xl);
+    width: fit-content;
 }
 
-/* Results Section */
+/* --- 7. Analysis Results Section --- */
 .results-section {
-    padding: var(--space-3xl) 0;
-    background: var(--bg-primary);
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-light);
+    /* display: none; is in HTML, so JS must add a class like 'active' to show */
 }
+/* JavaScript would toggle 'display: block' on .results-section */
 
 .results-container {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+    padding: var(--spacing-xl);
+    text-align: center;
     max-width: 800px;
     margin: 0 auto;
 }
 
 .loading {
-    text-align: center;
-    padding: var(--space-3xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--secondary-color);
+    /* Initial display handled by JS due to inline style in HTML */
 }
 
 .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid var(--gray-200);
+    border: 4px solid rgba(0, 0, 0, 0.1);
     border-top: 4px solid var(--primary-color);
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
     animation: spin 1s linear infinite;
-    margin: 0 auto var(--space-md);
 }
 
 @keyframes spin {
@@ -419,651 +507,1193 @@ textarea:focus {
     100% { transform: rotate(360deg); }
 }
 
+.results-content {
+    text-align: left;
+    /* Initial display handled by JS due to inline style in HTML */
+}
+
 .results-content h3 {
     text-align: center;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--primary-color);
+    font-size: 2rem;
 }
 
 .result-card {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
-    box-shadow: var(--shadow-lg);
-    border-left: 4px solid var(--primary-color);
+    background-color: var(--bg-medium);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    border-left: 5px solid var(--primary-color);
 }
 
-.result-card.danger {
-    border-left-color: var(--danger-color);
-    background: var(--danger-light);
+.result-card h4 {
+    color: var(--heading-color);
+    margin-bottom: var(--spacing-sm);
 }
 
-.result-card.warning {
-    border-left-color: var(--warning-color);
-    background: var(--warning-light);
+.result-card p {
+    margin-bottom: var(--spacing-sm);
 }
 
-.result-card.safe {
-    border-left-color: var(--secondary-color);
-    background: var(--info-light);
+.result-card .status {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    display: inline-block;
 }
 
-/* Medical Advice Chatbot Section */
+.status.safe {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+}
+
+.status.warning {
+    background-color: var(--warning-color);
+    color: var(--heading-color);
+}
+
+.status.dangerous {
+    background-color: var(--danger-color);
+    color: var(--light-text-color);
+}
+
+/* --- 8. Medical Advice Chatbot Section --- */
 .medical-chatbot-section {
-    padding: var(--space-3xl) 0;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--gray-200);
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-light);
 }
 
 .medical-chatbot-header {
-    margin-bottom: var(--space-2xl);
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    color: var(--light-text-color);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-medium);
+    text-align: center;
 }
 
-.header-content {
+.medical-chatbot-header .header-content {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--space-2xl);
+    flex-direction: column;
+    gap: var(--spacing-md);
 }
 
-.header-text h2 {
-    color: var(--primary-color);
-    margin-bottom: var(--space-md);
+.medical-chatbot-header h2 {
+    color: var(--light-text-color);
+    font-size: 2.5rem;
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
 }
 
-.header-text p {
-    font-size: var(--font-size-lg);
-    color: var(--text-secondary);
-    line-height: 1.6;
+.medical-chatbot-header p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .medical-badges {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    min-width: 200px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
 }
 
 .badge {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-sm);
+    gap: 0.3rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
     font-weight: 500;
-    white-space: nowrap;
+    font-size: 0.9rem;
 }
 
 .badge-primary {
-    background: var(--info-light);
-    color: var(--info-color);
-    border: 1px solid var(--info-color);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--light-text-color);
 }
 
 .badge-secondary {
-    background: var(--gray-100);
-    color: var(--gray-700);
-    border: 1px solid var(--gray-300);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--light-text-color);
 }
 
 .badge-warning {
-    background: var(--danger-light);
-    color: var(--danger-color);
-    border: 1px solid var(--danger-color);
+    background-color: var(--warning-color);
+    color: var(--heading-color);
 }
 
 .medical-chatbot-container {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: var(--spacing-xl);
 }
 
 .chatbot-disclaimer {
-    background: var(--warning-light);
-    border-bottom: 1px solid var(--warning-color);
-    padding: var(--space-md);
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-light);
+    border-left: 5px solid var(--warning-color);
 }
 
-.disclaimer-content h4 {
+.chatbot-disclaimer h4 {
     color: var(--warning-color);
-    margin-bottom: var(--space-sm);
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    font-size: var(--font-size-base);
-}
-
-.disclaimer-content p {
-    color: var(--text-primary);
-    margin: 0;
-    font-size: var(--font-size-sm);
-    line-height: 1.5;
+    gap: 0.5rem;
+    margin-bottom: var(--spacing-xs);
 }
 
 .medical-chat-interface {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden; /* For rounded corners of chat iframe */
     display: flex;
     flex-direction: column;
-    height: 600px;
 }
 
-.chat-header {
-    background: var(--primary-color);
-    color: var(--text-white);
-    padding: var(--space-md);
+.medical-chat-interface .chat-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-medium);
 }
 
 .chat-status {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: 0.5rem;
     font-weight: 500;
+    color: var(--heading-color);
 }
 
 .status-indicator {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #10b981;
-    animation: pulse 2s infinite;
+    background-color: var(--danger-color); /* Default offline */
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+.status-indicator.online {
+    background-color: var(--accent-color);
 }
 
-.chat-actions {
+.preset-questions {
     display: flex;
-    gap: var(--space-sm);
+    overflow-x: auto; /* Scroll horizontally */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
 }
 
-.btn-icon {
-    background: none;
-    border: none;
-    color: var(--text-white);
-    padding: var(--space-xs);
-    border-radius: var(--radius-sm);
+.preset-questions::-webkit-scrollbar {
+    height: 8px; /* For horizontal scrollbar */
+}
+
+.preset-questions::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.preset-question-btn {
+    white-space: nowrap; /* Prevent text wrapping */
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    color: var(--text-color);
+    border-radius: var(--border-radius-md);
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: background var(--transition-fast);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
+    transition: all 0.2s ease-in-out;
 }
 
-.btn-icon:hover,
-.btn-icon:focus {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.medical-chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: var(--space-md);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    background: var(--gray-50);
-}
-
-.message {
-    display: flex;
-    gap: var(--space-sm);
-    max-width: 85%;
-}
-
-.medical-bot-message {
-    align-self: flex-start;
-}
-
-.medical-user-message {
-    align-self: flex-end;
-    flex-direction: row-reverse;
-}
-
-.message-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    color: var(--text-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: var(--font-size-sm);
-}
-
-.medical-user-message .message-avatar {
-    background: var(--secondary-color);
-}
-
-.message-content {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-md);
-    box-shadow: var(--shadow-sm);
-    flex: 1;
-}
-
-.medical-user-message .message-content {
-    background: var(--primary-color);
-    color: var(--text-white);
-}
-
-.message-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--space-xs);
-}
-
-.sender-name {
-    font-weight: 600;
-    font-size: var(--font-size-sm);
-    color: var(--primary-color);
-}
-
-.medical-user-message .sender-name {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.message-time {
-    font-size: var(--font-size-xs);
-    color: var(--text-muted);
-}
-
-.medical-user-message .message-time {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.message-text {
-    line-height: 1.5;
-    font-size: var(--font-size-sm);
-}
-
-.message-text ul {
-    margin: var(--space-sm) 0;
-    padding-left: var(--space-lg);
-}
-
-.message-text li {
-    margin-bottom: var(--space-xs);
-}
-
-.quick-questions {
-    padding: var(--space-md);
-    border-top: 1px solid var(--gray-200);
-    background: var(--bg-primary);
-}
-
-.quick-questions h4 {
-    margin-bottom: var(--space-md);
-    color: var(--text-primary);
-    font-size: var(--font-size-base);
-}
-
-.quick-question-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-sm);
-}
-
-.quick-question-btn {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
-    background: var(--gray-100);
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius-md);
-    color: var(--text-primary);
-    text-align: left;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    font-size: var(--font-size-sm);
-}
-
-.quick-question-btn:hover,
-.quick-question-btn:focus {
-    background: var(--primary-color);
-    color: var(--text-white);
+.preset-question-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
     border-color: var(--primary-color);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
 }
 
-.medical-chat-input-container {
-    border-top: 1px solid var(--gray-200);
-    background: var(--bg-primary);
+/* Botpress chat container specific styles (from your original HTML inline style) */
+.botpress-chat-container {
+    width: 100%;
+    height: 600px;
+    border-radius: 12px; /* Keeping original px values for these properties as requested */
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Keeping original px values for these properties as requested */
+    flex-grow: 1; /* Allows it to expand within flex container */
 }
 
-.input-wrapper {
-    padding: var(--space-md);
-    display: flex;
-    gap: var(--space-sm);
-    align-items: flex-end;
+/* Botpress Webchat overrides (from your original HTML inline style) */
+#medical-webchat .bpWebchat {
+    position: unset !important;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 12px; /* Keeping original px values for these properties as requested */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Keeping original px values for these properties as requested */
 }
 
-.input-wrapper textarea {
-    flex: 1;
-    min-height: 44px;
-    max-height: 120px;
-    padding: var(--space-sm) var(--space-md);
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius-md);
-    font-family: var(--font-family);
-    font-size: var(--font-size-sm);
-    line-height: 1.4;
-    resize: vertical;
-    transition: border-color var(--transition-fast);
-}
-
-.input-wrapper textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-}
-
-.input-actions {
-    display: flex;
-    gap: var(--space-xs);
-    align-items: flex-end;
-}
-
-.input-footer {
-    padding: var(--space-sm) var(--space-md);
-    background: var(--gray-50);
-    border-top: 1px solid var(--gray-200);
-}
-
-.input-footer small {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    color: var(--text-muted);
-    font-size: var(--font-size-xs);
-}
-
-.input-footer a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-.input-footer a:hover,
-.input-footer a:focus {
-    text-decoration: underline;
+#medical-webchat .bpFab {
+    display: none !important;
 }
 
 .emergency-actions {
-    padding: var(--space-lg);
-    background: var(--danger-light);
-    border-top: 1px solid var(--danger-color);
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-light);
+    padding: var(--spacing-lg);
+    text-align: center;
+    margin-top: var(--spacing-xl); /* Add space above it */
 }
 
 .emergency-actions h4 {
-    color: var(--danger-color);
-    margin-bottom: var(--space-md);
+    color: var(--heading-color);
+    margin-bottom: var(--spacing-md);
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .emergency-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-sm);
 }
 
 .emergency-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-md);
-    background: var(--bg-primary);
-    border: 2px solid var(--danger-color);
-    border-radius: var(--radius-lg);
-    color: var(--danger-color);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    text-align: center;
-}
-
-.emergency-btn:hover,
-.emergency-btn:focus {
-    background: var(--danger-color);
-    color: var(--text-white);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    background-color: var(--bg-light);
+    font-size: 1rem;
+    color: var(--text-color);
 }
 
 .emergency-btn i {
-    font-size: var(--font-size-xl);
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-xs);
 }
 
 .emergency-btn span {
     font-weight: 600;
-    font-size: var(--font-size-base);
 }
 
 .emergency-btn small {
-    font-size: var(--font-size-xs);
-    opacity: 0.8;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
 }
 
+.emergency-btn.call-911 { color: var(--danger-color); border-color: var(--danger-color); }
+.emergency-btn.poison-control { color: var(--warning-color); border-color: var(--warning-color); }
+.emergency-btn.find-hospital { color: var(--primary-color); border-color: var(--primary-color); }
+.emergency-btn.telemedicine { color: var(--accent-color); border-color: var(--accent-color); }
+
+.emergency-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-light);
+}
+
+.emergency-btn.call-911:hover { background-color: var(--danger-color); color: var(--light-text-color); }
+.emergency-btn.poison-control:hover { background-color: var(--warning-color); color: var(--heading-color); }
+.emergency-btn.find-hospital:hover { background-color: var(--primary-color); color: var(--light-text-color); }
+.emergency-btn.telemedicine:hover { background-color: var(--accent-color); color: var(--light-text-color); }
+
+
+/* Flowise Chatbot Integration */
 .flowise-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-    height: 80%;
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
-    z-index: 1001;
-    display: flex;
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-xl); /* Space above Flowise if shown */
+    /* display: none; is in HTML, so JS must show it */
     flex-direction: column;
-    overflow: hidden;
 }
 
 .flowise-header {
-    background: var(--primary-color);
-    color: var(--text-white);
-    padding: var(--space-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
 }
 
 .flowise-header h4 {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-}
-
-.btn-close {
-    background: none;
-    border: none;
-    color: var(--text-white);
-    cursor: pointer;
-    padding: var(--space-xs);
-    border-radius: var(--radius-sm);
-    transition: background var(--transition-fast);
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-close:hover,
-.btn-close:focus {
-    background: rgba(255, 255, 255, 0.1);
+    gap: 0.5rem;
+    color: var(--heading-color);
 }
 
 .flowise-content {
-    flex: 1;
+    flex-grow: 1;
+    height: 400px; /* Fixed height for Flowise iframe */
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gray-50);
+    color: var(--secondary-color);
 }
 
 .flowise-placeholder {
     text-align: center;
-    color: var(--text-muted);
 }
 
-.flowise-placeholder i {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--space-md);
+.flowise-placeholder .fa-spin {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* --- 9. Floating AI Chatbot (General Safety) --- */
+.chatbot-container {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 90%;
+    max-width: 380px;
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh; /* Limit height for smaller screens */
+}
+
+.chatbot-header {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chatbot-header h4 {
+    margin: 0;
+    color: var(--light-text-color);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chatbot-toggle {
+    background: none;
+    border: none;
+    color: var(--light-text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.chatbot-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatbot-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 250px; /* Minimum height for chat body */
+    max-height: calc(80vh - 60px); /* Adjust based on header height */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Assuming JavaScript will add a class like 'minimized' to .chatbot-container */
+.chatbot-container.minimized .chatbot-body {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+.chat-messages {
+    flex-grow: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.message {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-md);
+    word-wrap: break-word;
+}
+
+.bot-message {
+    background-color: var(--bg-medium);
+    align-self: flex-start;
+    border-bottom-left-radius: var(--border-radius-sm);
+}
+
+.user-message {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    align-self: flex-end;
+    border-bottom-right-radius: var(--border-radius-sm);
+}
+
+.chat-input-container {
+    display: flex;
+    padding: var(--spacing-sm);
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-light);
+}
+
+.chat-input-container input {
+    flex-grow: 1;
+    margin-right: var(--spacing-sm);
+    border-radius: var(--border-radius-lg); /* More rounded input */
+}
+
+.chat-input-container button {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 50%; /* Circular button */
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+}
+
+.chat-input-container button:hover {
+    background-color: #0056b3;
+}
+
+
+/* --- 10. About Section --- */
+.about-section,
+.safety-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-light);
+    text-align: center;
+}
+
+.about-section h2,
+.safety-section h2 {
+    margin-bottom: var(--spacing-xl);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    justify-items: center;
+}
+
+.about-card {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-light);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.about-card i {
+    font-size: 3rem;
     color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    :root {
-        --font-size-4xl: 2rem;
-        --font-size-3xl: 1.75rem;
-        --font-size-2xl: 1.375rem;
-    }
-    
-    .container {
-        padding: 0 var(--space-sm);
-    }
-    
+.about-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-card p {
+    color: var(--secondary-color);
+}
+
+/* --- 11. Safety Tips Section --- */
+.safety-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    justify-items: center;
+}
+
+.tip-card {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-light);
+    padding: var(--spacing-lg);
+    text-align: left;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-left: 5px solid; /* For colored border */
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.tip-card h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tip-card ul {
+    list-style: disc; /* Use bullets for tips */
+    padding-left: var(--spacing-md);
+}
+
+.tip-card li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.tip-card.danger { border-color: var(--danger-color); }
+.tip-card.danger h3 { color: var(--danger-color); }
+
+.tip-card.warning { border-color: var(--warning-color); }
+.tip-card.warning h3 { color: var(--warning-color); }
+
+.tip-card.info { border-color: var(--primary-color); }
+.tip-card.info h3 { color: var(--primary-color); }
+
+
+/* --- 12. Footer --- */
+.footer {
+    background-color: var(--bg-dark);
+    color: var(--light-text-color);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    text-align: left;
+}
+
+.footer-section h3 {
+    color: var(--light-text-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-section p,
+.footer-section a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.footer-section a:hover {
+    color: var(--light-text-color);
+}
+
+/* --- 13. Responsive Design (Media Queries) --- */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.8rem; }
+    h3 { font-size: 2rem; }
+
     .header .container {
-        padding: var(--space-sm);
+        padding: 0 var(--spacing-lg);
     }
-    
-    .nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-primary);
-        box-shadow: var(--shadow-md);
-        padding: var(--space-md);
+
+    .hero-content h2 {
+        font-size: 4.5rem;
     }
-    
-    .nav.active {
-        display: block;
+
+    .upload-container {
+        flex-direction: row; /* Side-by-side on larger screens */
+        justify-content: center;
+        align-items: flex-start;
     }
-    
-    .nav ul {
-        flex-direction: column;
-        gap: var(--space-md);
+
+    .upload-area,
+    .image-preview {
+        flex: 1; /* Take equal space */
     }
-    
+
+    .medical-chatbot-container {
+        grid-template-columns: 2fr 1fr; /* Chatbot takes more space, disclaimer/actions on side */
+    }
+
+    /* Adjusting grid-area for medical-chatbot-container children based on the 2-column layout */
+    .chatbot-disclaimer {
+        grid-column: 2 / 3; /* Places it in the second column */
+        grid-row: 1 / 2; /* First row */
+    }
+
+    .medical-chat-interface {
+        grid-column: 1 / 2; /* Places it in the first column */
+        grid-row: 1 / span 2; /* Spans across two rows */
+    }
+
+    .emergency-actions {
+        grid-column: 2 / 3; /* Places it in the second column */
+        grid-row: 2 / 3; /* Second row */
+        margin-top: 0; /* Reset mobile margin */
+    }
+
+    .flowise-container {
+        grid-column: 1 / 3; /* Flowise spans full width if active */
+        margin-top: var(--spacing-xl);
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    h1 { font-size: 4rem; }
+    h2 { font-size: 3.2rem; }
+    h3 { font-size: 2.5rem; }
+
+    .header {
+        padding: var(--spacing-md) 0;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content {
+        min-height: 50px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        padding: 0; /* Remove padding if max-width is reached */
+    }
+}
+
+/* Mobile-specific adjustments (max-width for overrides) */
+@media (max-width: 767px) {
+    .header .container {
+        flex-wrap: wrap; /* Allow logo and nav to wrap */
+    }
+
+    .logo {
+        flex-grow: 1; /* Allow logo to take more space */
+    }
+
     .menu-toggle {
-        display: flex;
+        display: flex; /* Show hamburger menu */
     }
-    
-    .hero {
-        padding: var(--space-2xl) 0;
+
+    .nav {
+        order: 3; /* Move navigation below logo/toggle */
+        width: 100%;
+        margin-top: var(--spacing-sm);
     }
-    
+
+    .nav ul { /* Your original HTML uses `nav ul` for the list */
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--bg-light);
+        border-top: 1px solid var(--border-color);
+        padding: var(--spacing-md) 0;
+    }
+
+    /* This assumes JavaScript will add a class like 'active' to 'nav ul' when menu is open */
+    .nav ul.active {
+        display: flex; /* Show when active */
+    }
+
+    .nav ul li {
+        margin: var(--spacing-xs) 0;
+    }
+
+    .nav ul a {
+        padding: var(--spacing-sm) 0;
+        display: block;
+        width: 100%;
+    }
+
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
     .upload-area {
-        padding: var(--space-xl);
+        padding: var(--spacing-md);
     }
-    
+
+    .upload-area h3 {
+        font-size: 1.2rem;
+    }
+
+    .upload-area p {
+        font-size: 0.9rem;
+    }
+
     .upload-buttons {
+        flex-direction: column;
+    }
+
+    .upload-buttons button { /* Targeting the buttons directly as per your HTML */
+        width: 100%;
+    }
+
+    .medical-chatbot-header {
+        padding: var(--spacing-lg);
+    }
+
+    .medical-chatbot-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .medical-chatbot-header p {
+        font-size: 1rem;
+    }
+
+    .medical-badges {
         flex-direction: column;
         align-items: center;
     }
-    
-    .btn {
-        width: 100%;
-        max-width: 200px;
-        justify-content: center;
+
+    .badge {
+        width: fit-content;
     }
-    
+
+    .emergency-buttons {
+        grid-template-columns: 1fr; /* Stack buttons on mobile */
+    }
+
     .chatbot-container {
-        width: calc(100vw - 2rem);
-        right: var(--space-md);
-        left: var(--space-md);
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+        width: calc(100% - var(--spacing-md) * 2); /* Adjust width */
+        max-width: 100%; /* Take full width on small screens */
     }
-    
-    .about-grid,
-    .safety-tips {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
+
+    .chat-messages {
+        max-height: 200px; /* Smaller max-height for mobile chat */
     }
 }
 
-@media (max-width: 480px) {
-    .upload-area {
-        padding: var(--space-lg);
+/* --- Ensure Botpress Medical AI Assistant is Always Visible & Preset Questions Usable --- */
+#medical-webchat {
+    min-height: 420px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: #fff;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 4px 24px rgba(34,74,91,0.13);
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 1.2rem;
+    border: 2px solid var(--brand-mint);
+}
+#medical-webchat .bpWebchat {
+    min-height: 420px !important;
+    height: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    background: #fff !important;
+    border-radius: 0 0 18px 18px !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    z-index: 11 !important;
+    font-family: 'Open Sans', Arial, sans-serif !important;
+}
+#medical-webchat .bpWebchatHeader {
+    background: linear-gradient(90deg, var(--primary-color) 60%, var(--brand-green) 100%) !important;
+    color: #fff !important;
+    font-family: 'Quicksand', Arial, sans-serif !important;
+    font-weight: 700 !important;
+    border-top-left-radius: 18px !important;
+    border-top-right-radius: 18px !important;
+    z-index: 12 !important;
+    box-shadow: 0 2px 8px rgba(34,74,91,0.10);
+}
+#medical-webchat .bpWebchatHeaderTitle {
+    font-family: 'Quicksand', Arial, sans-serif !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    letter-spacing: 0.01em;
+}
+#medical-webchat .bpWebchatMessage.bot {
+    background: var(--brand-yellow) !important;
+    color: var(--primary-color) !important;
+    border-radius: 14px 14px 14px 2px !important;
+    font-family: 'Open Sans', Arial, sans-serif !important;
+    margin-bottom: 0.5rem !important;
+    box-shadow: 0 2px 8px rgba(213,196,132,0.10);
+}
+#medical-webchat .bpWebchatMessage.user {
+    background: var(--brand-mint) !important;
+    color: var(--primary-color) !important;
+    border-radius: 14px 14px 2px 14px !important;
+    font-family: 'Open Sans', Arial, sans-serif !important;
+    margin-bottom: 0.5rem !important;
+    box-shadow: 0 2px 8px rgba(184,221,209,0.10);
+}
+#medical-webchat .bpWebchatFooter {
+    background: var(--bg-tertiary) !important;
+    border-radius: 0 0 18px 18px !important;
+    z-index: 12 !important;
+    box-shadow: 0 -2px 8px rgba(34,74,91,0.04);
+}
+#medical-webchat .bpWebchatSendButton {
+    background: var(--brand-green) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-family: 'Open Sans', Arial, sans-serif !important;
+    font-weight: 600 !important;
+    transition: background 0.2s;
+}
+#medical-webchat .bpWebchatSendButton:hover,
+#medical-webchat .bpWebchatSendButton:focus {
+    background: var(--primary-color) !important;
+}
+#medical-webchat .bpWebchatInput {
+    border: 1.5px solid var(--brand-mint) !important;
+    border-radius: 8px !important;
+    font-family: 'Open Sans', Arial, sans-serif !important;
+    font-size: 1rem !important;
+    color: var(--primary-color) !important;
+    background: #fff !important;
+}
+#medical-webchat .bpWebchatInput:focus {
+    border: 1.5px solid var(--brand-green) !important;
+    outline: none !important;
+}
+#medical-webchat .bpFab {
+    display: none !important;
+}
+
+/* Preset Questions Bar for Medical AI Assistant */
+.preset-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.2rem 0 0.5rem 0;
+    padding: 0 1.5rem;
+    justify-content: flex-start;
+    z-index: 20;
+    position: relative;
+}
+.preset-question-btn {
+    background: var(--brand-yellow);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(34,74,91,0.06);
+}
+.preset-question-btn:hover, .preset-question-btn:focus {
+    background: var(--brand-green);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(34,74,91,0.12);
+}
+
+/* --- Custom Medical AI Assistant Chat UI Styling --- */
+.custom-medical-chat {
+    background: var(--info-light);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(34,74,91,0.10);
+    padding: 0.5rem 0 0.5rem 0;
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+    max-height: 420px;
+    height: 100%;
+    overflow: hidden;
+}
+.custom-medical-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem 0.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    max-height: 300px;
+}
+.custom-medical-input-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 0 0 14px 14px;
+    padding: 0.7rem 1.2rem;
+    box-shadow: 0 -2px 8px rgba(34,74,91,0.04);
+}
+#customMedicalInput {
+    flex: 1;
+    border: 1.5px solid var(--brand-mint);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: #fff;
+    color: var(--primary-color);
+    transition: border 0.2s;
+}
+#customMedicalInput:focus {
+    border: 1.5px solid var(--brand-green);
+    outline: none;
+}
+#sendCustomMedicalMessage {
+    background: var(--brand-green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+#sendCustomMedicalMessage:hover, #sendCustomMedicalMessage:focus {
+    background: var(--primary-color);
+}
+.message.medical-bot-message .message-avatar {
+    background: var(--brand-yellow);
+    color: var(--primary-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+}
+.message.medical-user-message .message-avatar {
+    background: var(--brand-mint);
+    color: var(--primary-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+}
+.message.medical-bot-message .message-content {
+    background: var(--brand-yellow);
+    color: var(--primary-color);
+    border-radius: 14px 14px 14px 2px;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(213,196,132,0.10);
+    max-width: 80%;
+    word-break: break-word;
+}
+.message.medical-user-message .message-content {
+    background: var(--brand-mint);
+    color: var(--primary-color);
+    border-radius: 14px 14px 2px 14px;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(184,221,209,0.10);
+    max-width: 80%;
+    word-break: break-word;
+    align-self: flex-end;
+}
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.2rem;
+}
+.sender-name {
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.message-time {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.message-text {
+    line-height: 1.5;
+    font-size: 1rem;
+}
+@media (max-width: 700px) {
+    .custom-medical-chat {
+        min-height: 220px;
+        max-height: 320px;
     }
-    
-    .upload-icon {
-        font-size: var(--font-size-3xl);
-    }
-    
-    .preview-container img {
-        max-height: 250px;
-    }
-    
-    .chatbot-container {
-        bottom: 0;
-        right: 0;
-        left: 0;
-        width: 100%;
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    .custom-medical-messages {
+        max-height: 180px;
+        padding: 0.7rem 0.5rem 0.5rem 0.5rem;
     }
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    :root {
-        --primary-color: #0000ff;
-        --secondary-color: #008000;
-        --danger-color: #ff0000;
-        --text-primary: #000000;
-        --bg-primary: #ffffff;
-    }
+/* --- 14. Safety Tips Modal (Pop-up) --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
 }
 
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+.modal.show {
+    display: flex; /* Show when 'show' class is added by JS */
 }
 
-/* Print styles */
-@media print {
-    .header,
-    .chatbot-container,
-    .upload-section {
-        display: none;
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+    width: 90%;
+    max-width: 800px; /* Max width for readability */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Limit height to prevent overflow on small screens */
+    overflow-y: auto; /* Enable scrolling for modal content */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--heading-color);
+    font-size: 1.8rem;
+}
+
+.close-button {
+    color: #aaa;
+    font-size: 2.2rem;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1; /* For vertical alignment */
+    padding: 0; /* Remove default padding */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--danger-color);
+    text-decoration: none;
+    outline: none;
+}
+
+.modal-body {
+    padding: var(--spacing-md) 0;
+    line-height: var(--line-height-base);
+    color: var(--text-color);
+    flex-grow: 1;
+}
+
+.modal-body h4 {
+    color: var(--primary-color);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.3rem;
+}
+
+.modal-body ul {
+    list-style: disc;
+    padding-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-body ul li {
+    margin-bottom: 0.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    text-align: right;
+}
+
+/* Ensure the button within the Safety Tips section is styled */
+.safety-section .text-center {
+    margin-top: var(--spacing-lg); /* Add margin to separate button from cards */
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 767px) {
+    .modal-content {
+        width: 95%; /* Slightly more width on smaller screens */
+        padding: var(--spacing-md);
     }
-    
-    .main {
-        margin: 0;
-        padding: 0;
+    .modal-header h3 {
+        font-size: 1.5rem;
     }
-    
-    .results-section {
-        background: white;
-        box-shadow: none;
+    .close-button {
+        font-size: 1.8rem;
     }
 }

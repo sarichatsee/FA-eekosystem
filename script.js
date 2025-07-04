@@ -847,3 +847,61 @@ function initializeFlowise() {
     
     console.log('Flowise integration ready - replace this with your Flowise embed code');
 }
+ // --- Safety Tips Modal Logic ---
+    const viewMoreTipsBtn = document.getElementById('viewMoreTipsBtn');
+    const safetyTipsModal = document.getElementById('safetyTipsModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const closeModalFooterBtn = document.getElementById('closeModalFooterBtn');
+
+    const viewMoreButtons = document.querySelectorAll('.view-more-tips');
+    const modals = document.querySelectorAll('.modal');
+    const closeModalButtons = document.querySelectorAll('.modal .close-button, .modal .close-modal-btn'); // Combined close buttons
+
+    // Open specific modal
+    viewMoreButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const modalId = event.target.dataset.modalTarget;
+            const targetModal = document.getElementById(modalId);
+            if (targetModal) {
+                targetModal.classList.add('show');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+                targetModal.focus(); // Focus the modal for accessibility
+            }
+        });
+    });
+
+    // Close modal functions
+    function closeSafetyTipsModal(modalElement) {
+        modalElement.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Attach close listeners to all close buttons
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const modalToClose = event.target.closest('.modal');
+            if (modalToClose) {
+                closeSafetyTipsModal(modalToClose);
+            }
+        });
+    });
+
+    // Close when clicking outside the modal content for any modal
+    modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeSafetyTipsModal(modal);
+            }
+        });
+    });
+
+    // Close when Escape key is pressed for any open modal
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modals.forEach(modal => {
+                if (modal.classList.contains('show')) {
+                    closeSafetyTipsModal(modal);
+                }
+            });
+        }
+    });

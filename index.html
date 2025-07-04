@@ -6,19 +6,14 @@
     <title>Eek-o-system - Animal Safety Analyzer</title>
     <meta name="description" content="Upload or take a photo to analyze if animals are venomous or poisonous and get immediate safety advice">
     
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
     
-    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Botpress Webchat -->
     <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
     <style>
       #medical-webchat .bpWebchat {
@@ -46,10 +41,8 @@
     </style>
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -71,9 +64,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main id="main-content" class="main">
-        <!-- Hero Section -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -83,7 +74,6 @@
             </div>
         </section>
 
-        <!-- Upload Section -->
         <section class="upload-section">
             <div class="container">
                 <div class="upload-container">
@@ -107,7 +97,6 @@
                         <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" aria-label="Take picture">
                     </div>
                     
-                    <!-- Image Preview -->
                     <div class="image-preview" id="imagePreview" style="display: none;">
                         <div class="preview-container">
                             <img id="previewImage" alt="Uploaded image preview">
@@ -124,7 +113,6 @@
             </div>
         </section>
 
-        <!-- Analysis Results -->
         <section class="results-section" id="resultsSection" style="display: none;">
             <div class="container">
                 <div class="results-container">
@@ -136,14 +124,12 @@
                     <div class="results-content" id="resultsContent" style="display: none;">
                         <h3>Analysis Results</h3>
                         <div class="result-card" id="resultCard">
-                            <!-- Results will be populated by JavaScript -->
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Medical Advice Chatbot Section -->
         <section class="medical-chatbot-section">
             <div class="container">
                 <div class="medical-chatbot-header">
@@ -162,11 +148,11 @@
                             </span>
                             <span class="badge badge-secondary">
                                 <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                                HIPAA Compliant
+                                PDPA Compliant
                             </span>
                             <span class="badge badge-warning">
                                 <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-                                Emergency? Call 911
+                                Emergency? Call 995
                             </span>
                         </div>
                     </div>
@@ -199,13 +185,11 @@
                             </div>
                         </div>
 
-                        <!-- Botpress Medical Chat Integration -->
                         <div class="botpress-chat-container">
                             <div id="medical-webchat"></div>
                         </div>
                     </div>
 
-                    <!-- Emergency Quick Actions -->
                     <div class="emergency-actions">
                         <h4>
                             <i class="fas fa-ambulance" aria-hidden="true"></i>
@@ -214,13 +198,13 @@
                         <div class="emergency-buttons">
                             <button class="emergency-btn call-911" onclick="callEmergency()">
                                 <i class="fas fa-phone" aria-hidden="true"></i>
-                                <span>Call 911</span>
+                                <span>Call 995</span>
                                 <small>Life-threatening emergency</small>
                             </button>
                             <button class="emergency-btn poison-control" onclick="callPoisonControl()">
                                 <i class="fas fa-flask" aria-hidden="true"></i>
-                                <span>Poison Control</span>
-                                <small>1-800-222-1222</small>
+                                <span>Poison Info</span>
+                                <small>+65 6423 9119</small>
                             </button>
                             <button class="emergency-btn find-hospital" onclick="findNearestHospital()">
                                 <i class="fas fa-hospital" aria-hidden="true"></i>
@@ -235,7 +219,6 @@
                         </div>
                     </div>
 
-                    <!-- Flowise Integration Container -->
                     <div class="flowise-container" id="flowiseContainer" style="display: none;">
                         <div class="flowise-header">
                             <h4>
@@ -247,7 +230,6 @@
                             </button>
                         </div>
                         <div class="flowise-content" id="flowiseContent">
-                            <!-- Flowise chatbot will be embedded here -->
                             <div class="flowise-placeholder">
                                 <i class="fas fa-cog fa-spin" aria-hidden="true"></i>
                                 <p>Loading advanced medical AI...</p>
@@ -258,7 +240,6 @@
             </div>
         </section>
 
-        <!-- AI Chatbot -->
         <div class="chatbot-container" id="chatbotContainer">
             <div class="chatbot-header">
                 <h4>
@@ -286,7 +267,6 @@
             </div>
         </div>
 
-        <!-- About Section -->
         <section id="about" class="about-section">
             <div class="container">
                 <h2>About Eek-o-system</h2>
@@ -310,7 +290,6 @@
             </div>
         </section>
 
-        <!-- Safety Tips Section -->
         <section id="safety" class="safety-section">
             <div class="container">
                 <h2>Safety Tips</h2>
@@ -318,46 +297,82 @@
                     <div class="tip-card danger">
                         <h3>⚠️ If Bitten or Stung</h3>
                         <ul>
-                            <li>Stay calm and don't panic</li>
-                            <li>Remove any jewelry near the bite</li>
-                            <li>Keep the affected area below heart level</li>
-                            <li>Seek immediate medical attention</li>
-                            <li>Call emergency services if severe symptoms occur</li>
+                            <li>Stay calm and don't panic.</li>
+                            <li>Remove any jewelry near the bite/sting.</li>
+                            <li>Keep the affected area below heart level if venomous.</li>
+                            <li>Seek immediate medical attention.</li>
+                            <li>Call emergency services (995) if severe symptoms occur.</li>
                         </ul>
+                        <button class="btn btn-primary view-more-tips" data-modal-target="bittenStungModal">View More</button>
                     </div>
                     <div class="tip-card warning">
                         <h3>🚨 Emergency Signs</h3>
                         <ul>
-                            <li>Difficulty breathing</li>
-                            <li>Severe swelling</li>
-                            <li>Rapid pulse</li>
-                            <li>Dizziness or fainting</li>
-                            <li>Severe pain or burning</li>
+                            <li>Difficulty breathing, severe swelling of face/throat.</li>
+                            <li>Rapid heart rate, dizziness, fainting.</li>
+                            <li>Nausea, vomiting, severe abdominal pain.</li>
+                            <li>Confusion, weakness, muscle spasms or paralysis.</li>
+                            <li>Sudden onset of fever or severe chills.</li>
+                            <li>Uncontrolled bleeding from the bite/sting site.</li>
                         </ul>
+                        <button class="btn btn-primary view-more-tips" data-modal-target="emergencySignsModal">View More</button>
                     </div>
                     <div class="tip-card info">
                         <h3>🛡️ Prevention</h3>
                         <ul>
-                            <li>Wear protective clothing in nature</li>
-                            <li>Use a flashlight in dark areas</li>
-                            <li>Don't disturb animals</li>
-                            <li>Check shoes and clothing</li>
-                            <li>Stay on marked trails</li>
+                            <li>Wear covered shoes & long pants in dense vegetation.</li>
+                            <li>Use insect repellent, especially during dawn/dusk.</li>
+                            <li>Avoid disturbing wild animals (monkeys, snakes, boars).</li>
+                            <li>Check footwear, bags, and clothing if left outdoors.</li>
+                            <li>Stay on marked paths in nature parks and reserves.</li>
+                            <li>Be aware of hiding spots for scorpions/centipedes.</li>
                         </ul>
+                        <button class="btn btn-primary view-more-tips" data-modal-target="preventionModal">View More</button>
+                    </div>
+
+                    <div class="tip-card info">
+                        <h3>🌊 Water & Coastal Safety</h3>
+                        <ul>
+                            <li>Be cautious near water bodies.</li>
+                            <li>Understand marine hazards like jellyfish and strong currents.</li>
+                            <li>Check for warning signs at beaches and reservoirs.</li>
+                            <li>Never swim in unapproved or restricted areas.</li>
+                        </ul>
+                        <button class="btn btn-primary view-more-tips" data-modal-target="waterSafetyModal">View More</button>
+                    </div>
+                    <div class="tip-card warning">
+                        <h3>🏙️ Urban & Pest Encounters</h3>
+                        <ul>
+                            <li>Be mindful of urban wildlife like rats, crows, and common pests.</li>
+                            <li>Maintain strict food hygiene to avoid attracting pests.</li>
+                            <li>Do not approach or feed stray animals.</li>
+                            <li>Keep your living environment clean and free of stagnant water.</li>
+                        </ul>
+                        <button class="btn btn-primary view-more-tips" data-modal-target="urbanPestModal">View More</button>
+                    </div>
+                    <div class="tip-card danger">
+                        <h3>☀️ Heat & Sun Exposure</h3>
+                        <ul>
+                            <li>Singapore's tropical climate poses risks of heat-related illnesses.</li>
+                            <li>Stay hydrated by drinking plenty of water.</li>
+                            <li>Seek shade during the hottest parts of the day.</li>
+                            <li>Recognize symptoms of heat exhaustion and heatstroke.</li>
+                        </ul>
+                        <button class="btn btn-primary view-more-tips" data-modal-target="heatSunModal">View More</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer id="contact" class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Emergency Contacts</h3>
-                    <p><strong>Emergency:</strong> 911</p>
-                    <p><strong>Poison Control:</strong> 1-800-222-1222</p>
+                    <p><strong>Emergency (Medical/Fire):</strong> 995</p>
+                    <p><strong>Police:</strong> 999</p>
+                    <p><strong>Poison Information:</strong> <a href="tel:+6564239119">+65 6423 9119</a> (SGH)</p>
                 </div>
                 <div class="footer-section">
                     <h3>Disclaimer</h3>
@@ -365,16 +380,207 @@
                 </div>
                 <div class="footer-section">
                     <h3>Eek-o-system</h3>
-                    <p>&copy; 2025 Animal Safety Analyzer. Built for educational purposes.</p>
+                    <p>© 2025 Animal Safety Analyzer. Built for educational purposes.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <div id="bittenStungModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="bittenStungModalTitle" aria-describedby="bittenStungModalDescription">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="bittenStungModalTitle">If Bitten or Stung - Detailed Advice</h3>
+                <button class="close-button" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body" id="bittenStungModalDescription">
+                <h4>Immediate Actions:</h4>
+                <ul>
+                    <li>Remain calm and try to identify the animal without putting yourself at further risk.</li>
+                    <li>Move away from the animal and ensure your safety.</li>
+                    <li>Call emergency services (995) immediately if the bite or sting is severe, from a venomous animal, or if the person shows signs of an allergic reaction.</li>
+                    <li>Immobilize the bitten limb (if applicable) and keep it below the level of the heart to slow the spread of venom.</li>
+                    <li>Do NOT cut the wound, attempt to suck out venom, or apply a tourniquet.</li>
+                    <li>Remove any tight clothing or jewelry near the bite/sting site as swelling may occur.</li>
+                    <li>Clean the wound gently with soap and water if possible.</li>
+                </ul>
+                <h4>For specific bites/stings:</h4>
+                <ul>
+                    <li>Snake Bite: Keep calm, lie still, avoid moving the bitten limb. Call 995. Do not wash the wound thoroughly, just clean gently around it if safe. Do not apply ice or a tourniquet.</li>
+                    <li>Bee/Wasp Sting: Scrape out the stinger quickly (if present) with a credit card edge or fingernail (do not squeeze). Wash the area with soap and water. Apply a cold compress. Monitor for allergic reactions like swelling beyond the sting site or difficulty breathing. Seek medical attention if symptoms worsen or severe allergic reactions occur.</li>
+                    <li>Jellyfish Sting: Rinse the affected area generously with seawater. Do NOT use fresh water or rub the area. For most common jellyfish in Singapore, vinegar can be applied if available. Seek medical attention.</li>
+                    <li>Dog/Cat Bite: Wash the wound thoroughly with soap and water for at least 5 minutes. Apply antiseptic. Seek medical attention immediately due to infection and rabies risk (even if rare in Singapore). Report the incident to NParks.</li>
+                    <li>Insect Bites (Mosquitoes, Sandflies, Ants): Cleanse with soap and water. Apply an anti-itch cream or calamine lotion. Monitor for signs of infection or dengue/zika fever symptoms if from mosquitoes.</li>
+                    <li>Scorpion/Centipede Sting: Clean the wound with soap and water. Apply a cold compress. Pain relievers can be used. Seek medical attention if pain is severe, symptoms spread, or for young children/elderly.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergencySignsModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="emergencySignsModalTitle" aria-describedby="emergencySignsModalDescription">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="emergencySignsModalTitle">Emergency Signs - When to Call 995</h3>
+                <button class="close-button" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body" id="emergencySignsModalDescription">
+                <p>Call 995 immediately if you observe any of the following signs after an animal encounter, bite, or sting:</p>
+                <ul>
+                    <li>Severe difficulty breathing, wheezing, or shortness of breath.</li>
+                    <li>Rapid, widespread swelling of the face, lips, tongue, or throat (signs of anaphylaxis, a severe allergic reaction).</li>
+                    <li>Rapid heart rate, irregular pulse, dizziness, lightheadedness, or loss of consciousness.</li>
+                    <li>Sudden onset of confusion, disorientation, or difficulty speaking.</li>
+                    <li>Severe and spreading pain that is disproportionate to the injury.</li>
+                    <li>Nausea, persistent vomiting, severe diarrhea, or abdominal cramps.</li>
+                    <li>Vision changes, blurred vision, double vision, or drooping eyelids.</li>
+                    <li>Muscle weakness, uncontrolled spasms, tremors, or paralysis.</li>
+                    <li>Profuse sweating or chills that are unrelated to temperature.</li>
+                    <li>Any signs of severe bleeding that cannot be controlled with direct pressure.</li>
+                    <li>Sudden onset of fever (especially high fever) or severe chills after a bite.</li>
+                    <li>Unusual or aggressive behavior in the person affected.</li>
+                </ul>
+                <p>These symptoms indicate a potentially life-threatening situation requiring urgent medical intervention. Do not delay seeking professional medical help.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="preventionModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="preventionModalTitle" aria-describedby="preventionModalDescription">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="preventionModalTitle">Prevention - Stay Safe in Singapore's Nature</h3>
+                <button class="close-button" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body" id="preventionModalDescription">
+                <h4>General Best Practices:</h4>
+                <ul>
+                    <li>Wear appropriate attire: Always wear covered shoes (e.g., hiking boots or sturdy sneakers), long pants, and long-sleeved shirts when venturing into forested areas, nature parks, or dense vegetation. This offers protection against bites, stings, and scratches.</li>
+                    <li>Use insect repellent: Apply effective mosquito and insect repellent, especially when visiting areas known for insect activity (e.g., wetlands, parks) and during dawn or dusk.</li>
+                    <li>Stay on marked trails: Do not stray from designated paths in nature reserves and parks. This minimizes your risk of encountering hidden animals or stepping on them accidentally.</li>
+                    <li>Avoid disturbing wildlife: Observe animals from a distance. Never attempt to feed, touch, chase, or provoke any wild animal. This is for your safety and to protect the animals' natural behavior.</li>
+                    <li>Secure food and waste: Keep food securely stored and dispose of all litter in designated bins. Improper waste disposal can attract pests and larger animals.</li>
+                    <li>Check your surroundings: Before sitting down, or putting your hand into dark crevices, check the area. Shake out shoes and clothing if left outdoors before putting them on.</li>
+                    <li>Educate children: Teach children the importance of respecting wildlife and never approaching unfamiliar animals, even if they appear harmless.</li>
+                    <li>Carry a basic first aid kit: Include antiseptic wipes, bandages, pain relievers, antihistamines, and any personal medications.</li>
+                    <li>Inform others: Always let someone know your hiking route, expected duration, and estimated return time when venturing into nature parks or remote areas.</li>
+                </ul>
+                <h4>Specific to Singapore's Wildlife:</h4>
+                <ul>
+                    <li>Monkeys: Avoid eye contact, do not smile (as showing teeth can be seen as aggression), and keep food out of sight. Back away slowly if they approach.</li>
+                    <li>Snakes: If you see a snake, freeze, then slowly back away. Do not try to move or kill it. Call ACRES (9783 7782) if it's in a residential area.</li>
+                    <li>Wild Boars: Maintain a safe distance. If a boar approaches, remain calm and back away. Do not run, as it might provoke a chase. Never feed them.</li>
+                    <li>Monitor Lizards: Common near water bodies. They are generally shy but can bite if cornered. Give them space.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="waterSafetyModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="waterSafetyModalTitle" aria-describedby="waterSafetyModalDescription">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="waterSafetyModalTitle">Water & Coastal Safety Tips</h3>
+                <button class="close-button" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body" id="waterSafetyModalDescription">
+                <h4>General Water Safety:</h4>
+                <ul>
+                    <li>Only swim in designated swimming areas. Pay attention to warning flags and advisories from lifeguards or authorities.</li>
+                    <li>Be aware of currents: Even in calm waters, strong currents or rip tides can be present. If caught in a rip current, swim parallel to the shore until you break free, then swim to shore.</li>
+                    <li>Never swim alone, especially in unfamiliar waters.</li>
+                    <li>Avoid swimming in murky waters where visibility is poor.</li>
+                    <li>Do not wade or swim in canals, drains, or stormwater ponds, as they can have strong currents and poor water quality.</li>
+                </ul>
+                <h4>Marine Animal Encounters:</h4>
+                <ul>
+                    <li>Jellyfish: Be cautious when swimming in coastal waters. If stung, rinse with seawater (not fresh water) to remove tentacles. For most common jellyfish in Singapore, vinegar can be applied if available (do not rub). Seek medical attention for severe pain, large stings, or allergic reactions.</li>
+                    <li>Crocodiles: Though rare, saltwater crocodiles are present in certain estuaries and coastal areas like Sungei Buloh Wetland Reserve. Observe warning signs, do not swim in unapproved areas, and never feed them. Keep children and pets away from the water's edge in known crocodile habitats.</li>
+                    <li>Stonefish & Cone Snails: These venomous marine creatures can be found on reefs or sandy bottoms. Wear sturdy reef shoes when walking in shallow waters. If stung, immerse the affected limb in hot water (as hot as tolerable without scalding) and seek immediate medical attention.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="urbanPestModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="urbanPestModalTitle" aria-describedby="urbanPestModalDescription">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="urbanPestModalTitle">Urban & Pest Encounters - Detailed Safety</h3>
+                <button class="close-button" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body" id="urbanPestModalDescription">
+                <h4>Common Urban Animals & Pests:</h4>
+                <ul>
+                    <li>Rats & Mice: These can carry diseases. Practice good food hygiene, store food in sealed containers, and seal any cracks or holes in your home's structure. Report large infestations to your town council or pest control.</li>
+                    <li>Crows & Mynahs: While common, they can be aggressive, especially during nesting season or if you approach their young. Avoid provoking them or leaving food exposed in public areas.</li>
+                    <li>Cockroaches & Ants: Maintain cleanliness, store food properly, and manage waste effectively. Use insect baits or call pest control for persistent issues.</li>
+                    <li>Stray Dogs & Cats: While many strays are timid, avoid approaching or feeding them. If an aggressive stray dog confronts you, avoid direct eye contact, remain calm and still until it passes, then slowly back away. Report strays to NParks or SPCA.</li>
+                    <li>Lizards (Geckos, Skinks): Common house lizards are harmless and help control insects. Avoid handling them.</li>
+                    <li>Pigeons: Can be found in urban areas and parks. Avoid feeding them as their droppings can carry diseases and they may become a nuisance.</li>
+                </ul>
+                <h4>General Tips for Urban Encounters:</h4>
+                <ul>
+                    <li>Maintain Cleanliness: Keep your home and surroundings clean to deter pests.</li>
+                    <li>Food Management: Store food in airtight containers and clean up spills immediately.</li>
+                    <li>Waste Disposal: Dispose of all food waste in tightly sealed bins.</li>
+                    <li>Do Not Feed Wild Animals: Feeding urban wildlife makes them reliant on humans and can lead to aggressive behavior.</li>
+                    <li>Seal Entry Points: Block any holes or gaps in your home's walls, doors, or windows that pests might use to enter.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="heatSunModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="heatSunModalTitle" aria-describedby="heatSunModalDescription">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="heatSunModalTitle">Heat & Sun Exposure Safety Tips</h3>
+                <button class="close-button" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body" id="heatSunModalDescription">
+                <h4>Staying Hydrated:</h4>
+                <ul>
+                    <li>Drink plenty of fluids: Carry a water bottle and drink regularly, even if you don't feel thirsty, especially during outdoor activities.</li>
+                    <li>Avoid sugary or alcoholic drinks: These can contribute to dehydration. Opt for water, isotonic drinks, or rehydration solutions.</li>
+                    <li>Eat hydrating foods: Include fruits and vegetables with high water content in your diet.</li>
+                </ul>
+                <h4>Sun Protection:</h4>
+                <ul>
+                    <li>Use sunscreen: Apply broad-spectrum sunscreen with at least SPF 30 generously and reapply every two hours, or more often if sweating or swimming.</li>
+                    <li>Wear protective clothing: Opt for light-colored, loose-fitting clothing that covers your arms and legs. A wide-brimmed hat and sunglasses are also recommended.</li>
+                    <li>Seek shade: Utilize natural shade or umbrellas, especially during peak sun hours (10 AM to 4 PM).</li>
+                </ul>
+                <h4>Recognizing & Responding to Heat Illness:</h4>
+                <ul>
+                    <li>Heat Cramps: Muscle pains or spasms, usually in the abdomen, arms, or legs. Rest, hydrate, and stretch affected muscles.</li>
+                    <li>Heat Exhaustion: Heavy sweating, paleness, muscle cramps, tiredness, weakness, dizziness, headache, nausea, fainting. Move to a cool place, loosen clothing, apply cool cloths, sip water. Seek medical attention if symptoms worsen or last more than an hour.</li>
+                    <li>Heatstroke (Medical Emergency): Body temperature over 40°C, hot/red/dry or damp skin, strong rapid pulse, throbbing headache, dizziness, nausea, confusion, unconsciousness. Call 995 immediately. Move to a cooler place and begin cooling measures (cool cloths, fan) until medical help arrives. Do NOT give fluids if unconscious.</li>
+                </ul>
+                <h4>Planning Outdoor Activities:</h4>
+                <ul>
+                    <li>Schedule wisely: Plan strenuous outdoor activities for early morning or late afternoon when temperatures are cooler.</li>
+                    <li>Take breaks: Allow for frequent rest breaks in shaded or air-conditioned areas.</li>
+                    <li>Listen to your body: Do not push yourself too hard, especially if you are not accustomed to the heat.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     
-    <!-- Botpress Medical Chat Initialization -->
     <script>
         // Initialize Botpress Medical Chat
         window.botpress.on("webchat:ready", () => {
