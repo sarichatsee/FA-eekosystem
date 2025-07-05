@@ -16,27 +16,149 @@
     
     <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
     <style>
-      #medical-webchat .bpWebchat {
-        position: unset;
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        max-width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      /* Botpress Chat Customization */
+      #botpress-webchat {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
       }
 
-      #medical-webchat .bpFab {
-        display: none;
-      }
-      
-      .botpress-chat-container {
-        width: 100%;
-        height: 600px;
+      /* Customize Botpress Chat Colors and Appearance */
+      #botpress-webchat .bpWebchat {
         border-radius: 12px;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Hide the default FAB and use custom styling */
+      #botpress-webchat .bpFab {
+        background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+        border-radius: 50% !important;
+        width: 60px !important;
+        height: 60px !important;
+        box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4) !important;
+        transition: all 0.3s ease !important;
+      }
+
+      #botpress-webchat .bpFab:hover {
+        background: linear-gradient(135deg, #45a049, #3d8b40) !important;
+        transform: scale(1.05) !important;
+        box-shadow: 0 6px 25px rgba(76, 175, 80, 0.6) !important;
+      }
+
+      /* Customize chat header */
+      #botpress-webchat .bpHeader {
+        background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+        color: white !important;
+        border-radius: 12px 12px 0 0 !important;
+        padding: 16px !important;
+        font-weight: 600 !important;
+      }
+
+      /* Customize chat title */
+      #botpress-webchat .bpHeader .bpHeaderTitle {
+        color: white !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+      }
+
+      /* Customize user messages */
+      #botpress-webchat .bpMessageUser {
+        background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+        color: white !important;
+        border-radius: 18px 18px 4px 18px !important;
+      }
+
+      /* Customize bot messages */
+      #botpress-webchat .bpMessageBot {
+        background: #f5f7fa !important;
+        color: #2c3e50 !important;
+        border-radius: 18px 18px 18px 4px !important;
+        border: 1px solid #e1e8ed !important;
+      }
+
+      /* Customize input field */
+      #botpress-webchat .bpComposer {
+        border-top: 1px solid #e1e8ed !important;
+        background: white !important;
+        border-radius: 0 0 12px 12px !important;
+      }
+
+      #botpress-webchat .bpComposer input {
+        border: 2px solid #e1e8ed !important;
+        border-radius: 20px !important;
+        padding: 10px 16px !important;
+        font-family: 'Inter', sans-serif !important;
+        transition: border-color 0.3s ease !important;
+      }
+
+      #botpress-webchat .bpComposer input:focus {
+        border-color: #4CAF50 !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1) !important;
+      }
+
+      /* Customize send button */
+      #botpress-webchat .bpSendButton {
+        background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+        border-radius: 50% !important;
+        border: none !important;
+        width: 40px !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: all 0.3s ease !important;
+      }
+
+      #botpress-webchat .bpSendButton:hover {
+        background: linear-gradient(135deg, #45a049, #3d8b40) !important;
+        transform: scale(1.05) !important;
+      }
+
+      /* Customize close button */
+      #botpress-webchat .bpCloseButton {
+        color: white !important;
+        opacity: 0.8 !important;
+        transition: opacity 0.3s ease !important;
+      }
+
+      #botpress-webchat .bpCloseButton:hover {
+        opacity: 1 !important;
+      }
+
+      /* Customize scrollbar */
+      #botpress-webchat .bpConversation::-webkit-scrollbar {
+        width: 6px !important;
+      }
+
+      #botpress-webchat .bpConversation::-webkit-scrollbar-track {
+        background: #f1f1f1 !important;
+      }
+
+      #botpress-webchat .bpConversation::-webkit-scrollbar-thumb {
+        background: #4CAF50 !important;
+        border-radius: 3px !important;
+      }
+
+      #botpress-webchat .bpConversation::-webkit-scrollbar-thumb:hover {
+        background: #45a049 !important;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        #botpress-webchat {
+          bottom: 15px;
+          right: 15px;
+        }
+        
+        #botpress-webchat .bpWebchat {
+          width: calc(100vw - 30px) !important;
+          height: calc(100vh - 100px) !important;
+          max-width: none !important;
+          max-height: none !important;
+        }
       }
     </style>
 </head>
@@ -130,142 +252,41 @@
             </div>
         </section>
 
-        <section class="medical-chatbot-section">
+        <section class="emergency-actions-section">
             <div class="container">
-                <div class="medical-chatbot-header">
-                    <div class="header-content">
-                        <div class="header-text">
-                            <h2>
-                                <i class="fas fa-user-md" aria-hidden="true"></i>
-                                Medical Advice Assistant
-                            </h2>
-                            <p>Get instant medical guidance for animal encounters, bites, stings, and emergency situations. Our AI-powered medical assistant provides evidence-based advice to help you make informed decisions about seeking treatment.</p>
-                        </div>
-                        <div class="medical-badges">
-                            <span class="badge badge-primary">
-                                <i class="fas fa-clock" aria-hidden="true"></i>
-                                24/7 Available
-                            </span>
-                            <span class="badge badge-secondary">
-                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                                PDPA Compliant
-                            </span>
-                            <span class="badge badge-warning">
-                                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-                                Emergency? Call 995
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="medical-chatbot-container">
-                    <div class="chatbot-disclaimer">
-                        <div class="disclaimer-content">
-                            <h4>
-                                <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                Important Disclaimer
-                            </h4>
-                            <p>This AI assistant provides general medical information and guidance. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek immediate medical attention for serious symptoms or emergencies.</p>
-                        </div>
-                    </div>
-
-                    <div class="medical-chat-interface">
-                        <div class="chat-header">
-                            <div class="chat-status">
-                                <div class="status-indicator online"></div>
-                                <span>Medical AI Assistant - Online</span>
-                            </div>
-                            <div class="chat-actions">
-                                <button class="btn-icon" id="refreshMedicalChat" aria-label="Refresh chat">
-                                    <i class="fas fa-refresh" aria-hidden="true"></i>
-                                </button>
-                                <button class="btn-icon" id="fullscreenMedicalChat" aria-label="Fullscreen chat">
-                                    <i class="fas fa-expand" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="botpress-chat-container">
-                            <div id="medical-webchat"></div>
-                        </div>
-                    </div>
-
-                    <div class="emergency-actions">
-                        <h4>
-                            <i class="fas fa-ambulance" aria-hidden="true"></i>
-                            Emergency Quick Actions
-                        </h4>
-                        <div class="emergency-buttons">
-                            <button class="emergency-btn call-911" onclick="callEmergency()">
-                                <i class="fas fa-phone" aria-hidden="true"></i>
-                                <span>Call 995</span>
-                                <small>Life-threatening emergency</small>
-                            </button>
-                            <button class="emergency-btn poison-control" onclick="callPoisonControl()">
-                                <i class="fas fa-flask" aria-hidden="true"></i>
-                                <span>Poison Info</span>
-                                <small>+65 6423 9119</small>
-                            </button>
-                            <button class="emergency-btn find-hospital" onclick="findNearestHospital()">
-                                <i class="fas fa-hospital" aria-hidden="true"></i>
-                                <span>Find Hospital</span>
-                                <small>Nearest emergency room</small>
-                            </button>
-                            <button class="emergency-btn telemedicine" onclick="startTelemedicine()">
-                                <i class="fas fa-video" aria-hidden="true"></i>
-                                <span>Telemedicine</span>
-                                <small>Video consultation</small>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flowise-container" id="flowiseContainer" style="display: none;">
-                        <div class="flowise-header">
-                            <h4>
-                                <i class="fas fa-brain" aria-hidden="true"></i>
-                                Advanced Medical AI (Flowise)
-                            </h4>
-                            <button class="btn-close" id="closeFlowise" aria-label="Close Flowise chat">
-                                <i class="fas fa-times" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                        <div class="flowise-content" id="flowiseContent">
-                            <div class="flowise-placeholder">
-                                <i class="fas fa-cog fa-spin" aria-hidden="true"></i>
-                                <p>Loading advanced medical AI...</p>
-                            </div>
-                        </div>
+                <div class="emergency-actions">
+                    <h2>
+                        <i class="fas fa-ambulance" aria-hidden="true"></i>
+                        Emergency Quick Actions
+                    </h2>
+                    <div class="emergency-buttons">
+                        <button class="emergency-btn call-911" onclick="callEmergency()">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <span>Call 995</span>
+                            <small>Life-threatening emergency</small>
+                        </button>
+                        <button class="emergency-btn poison-control" onclick="callPoisonControl()">
+                            <i class="fas fa-flask" aria-hidden="true"></i>
+                            <span>Poison Info</span>
+                            <small>+65 6423 9119</small>
+                        </button>
+                        <button class="emergency-btn find-hospital" onclick="findNearestHospital()">
+                            <i class="fas fa-hospital" aria-hidden="true"></i>
+                            <span>Find Hospital</span>
+                            <small>Nearest emergency room</small>
+                        </button>
+                        <button class="emergency-btn telemedicine" onclick="startTelemedicine()">
+                            <i class="fas fa-video" aria-hidden="true"></i>
+                            <span>Telemedicine</span>
+                            <small>Video consultation</small>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="chatbot-container" id="chatbotContainer">
-            <div class="chatbot-header">
-                <h4>
-                    <i class="fas fa-robot" aria-hidden="true"></i>
-                    AI Safety Assistant
-                </h4>
-                <button class="chatbot-toggle" id="chatbotToggle" aria-label="Toggle chatbot">
-                    <i class="fas fa-minus" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="chatbot-body" id="chatbotBody">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot-message">
-                        <div class="message-content">
-                            Hello! I'm here to help you identify dangerous animals and provide safety advice. Upload an image to get started, or ask me any questions about animal safety.
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-input-container">
-                    <input type="text" id="chatInput" placeholder="Ask about animal safety..." aria-label="Chat input">
-                    <button id="sendMessage" aria-label="Send message">
-                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <!-- Botpress Chat Integration -->
+        <div id="botpress-webchat"></div>
 
         <section id="about" class="about-section">
             <div class="container">
@@ -582,44 +603,65 @@
     <script src="script.js"></script>
     
     <script>
-        // Initialize Botpress Medical Chat
-        window.botpress.on("webchat:ready", () => {
-            window.botpress.open();
-        });
-        
-        window.botpress.init({
-            "botId": "9539a481-22d8-4b5b-90fa-38c0e17e5ca2",
-            "configuration": {
-                "website": {},
-                "email": {},
-                "phone": {},
-                "termsOfService": {},
-                "privacyPolicy": {}
-            },
-            "clientId": "5266c785-ef0e-419a-9370-2972bd1f057b",
-            "selector": "#medical-webchat"
-        });
-
-        // Handle refresh button
-        document.getElementById('refreshMedicalChat')?.addEventListener('click', () => {
-            window.botpress.close();
+        // Initialize Botpress Chat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for Botpress to load
             setTimeout(() => {
-                window.botpress.open();
-            }, 500);
+                if (window.botpress) {
+                    console.log('Botpress loaded successfully');
+                    
+                    // Initialize Botpress with custom configuration
+                    window.botpress.init({
+                        "botId": "9539a481-22d8-4b5b-90fa-38c0e17e5ca2",
+                        "clientId": "5266c785-ef0e-419a-9370-2972bd1f057b",
+                        "configuration": {
+                            "botName": "AI Safety Assistant",
+                            "botAvatarUrl": "",
+                            "composerPlaceholder": "Ask about animal safety...",
+                            "enableConversationDeletion": true,
+                            "showPoweredBy": false,
+                            "website": {
+                                "title": "AI Safety Assistant",
+                                "description": "Get instant safety guidance for animal encounters. For emergencies, call 995 immediately."
+                            },
+                            "email": {},
+                            "phone": {},
+                            "termsOfService": {},
+                            "privacyPolicy": {}
+                        },
+                        "selector": "#botpress-webchat"
+                    });
+
+                    // Open the chat after initialization
+                    setTimeout(() => {
+                        try {
+                            console.log('Botpress chat initialized successfully');
+                            
+                            // Add custom welcome message styling
+                            window.botpress.on('webchat:ready', () => {
+                                console.log('Botpress webchat is ready');
+                            });
+                            
+                        } catch (e) {
+                            console.error('Error with Botpress chat:', e);
+                        }
+                    }, 1000);
+
+                } else {
+                    console.error('Botpress not loaded - check network connection');
+                }
+            }, 1500);
         });
 
-        // Handle fullscreen button
-        document.getElementById('fullscreenMedicalChat')?.addEventListener('click', () => {
-            const chatContainer = document.querySelector('.botpress-chat-container');
-            if (chatContainer) {
-                if (chatContainer.requestFullscreen) {
-                    chatContainer.requestFullscreen();
-                } else if (chatContainer.webkitRequestFullscreen) {
-                    chatContainer.webkitRequestFullscreen();
-                } else if (chatContainer.msRequestFullscreen) {
-                    chatContainer.msRequestFullscreen();
+        // Add custom JavaScript for additional styling after chat loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                // Add custom icon to FAB if needed
+                const fabIcon = document.querySelector('#botpress-webchat .bpFab svg');
+                if (fabIcon) {
+                    fabIcon.innerHTML = '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="white"/>';
                 }
-            }
+            }, 3000);
         });
     </script>
 </body>
