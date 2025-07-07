@@ -1550,3 +1550,226 @@ textarea:focus-visible {
     display: none !important;
 }
 /* --- END: Specific Botpress Webchat Styling --- */
+
+/* --- Section Container & Layout --- */
+.flip-showcase {
+    padding: 3rem 1rem;
+    background-color: #f0f2f5; /* Light grey background to subtly separate from white sections */
+}
+
+.flip-showcase__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.flip-showcase__title {
+    margin-bottom: 2.5rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1c2a39;
+}
+
+.flip-showcase__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* --- Core Flip Card Structure --- */
+.flip-card {
+    width: 310px;
+    height: 440px;
+    perspective: 1000px; 
+    font-family: 'Inter', sans-serif; /* Uses the font from your existing project */
+}   
+
+.flip-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    border-radius: 15px; /* Softer radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.flip-card:hover .flip-card__inner {
+    transform: rotateY(180deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* --- Card Front & Back Styling --- */
+.flip-card__front,
+.flip-card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* For Safari */
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden; /* Ensures content respects the border radius */
+}
+
+.flip-card__front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents image distortion */
+    background-color: #eee;
+}
+
+.flip-card__back {
+    background: linear-gradient(135deg, #2c3e50, #34495e); /* Subtle gradient */
+    color: #ecf0f1;
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- Content on the Back of the Card --- */
+.flip-card__title {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    color: #e67e22; /* Retained the highlight color */
+    font-weight: 700;
+}
+
+.flip-card__content h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 1rem 0 0.25rem 0;
+    text-align: left;
+    color: #95a5a6; /* Softer color for subheadings */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #4a6fa5;
+    padding-bottom: 0.25rem;
+}
+
+.flip-card__content p {
+    font-size: 0.9rem;
+    text-align: left;
+    margin: 0.25rem 0;
+    line-height: 1.5;
+    color: #ecf0f1;
+}
+
+.flip-card__content p strong {
+    color: #f1c40f; /* Make key words pop */
+}
+
+/*
+==============================================
+--- 📚 Essential Resources Hub Section ---
+==============================================
+*/
+
+/* --- Main Hub Layout --- */
+.resources-hub {
+    padding: 4rem 1rem;
+    background-color: #f8f9fa; /* A clean, light grey background */
+    font-family: 'Inter', sans-serif;
+}
+
+.resources-hub__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.resources-hub__title {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.resources-hub__intro {
+    max-width: 650px;
+    margin: 0 auto 3rem auto;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- Responsive Grid for Cards --- */
+.resources-hub__grid {
+    display: grid;
+    /* This creates responsive columns that wrap automatically */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* --- Individual Card Styling --- */
+.resource-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Aligns content vertically */
+}
+
+.resource-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.resource-card__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    /* A professional teal color */
+    color: #00796b;
+}
+
+.resource-card__name {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+}
+
+.resource-card__description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Pushes the button to the bottom */
+}
+
+.resource-card__link {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: #00796b;
+    color: #ffffff;
+}
+
+.resource-card__link:hover {
+    background-color: #005a4f;
+    transform: scale(1.03);
+}
+
+/* --- Special Button Colors --- */
+.resource-card__link.hotline {
+    background-color: #c84013; /* A warm, urgent orange */
+}
+.resource-card__link.hotline:hover {
+    background-color: #a0330f;
+}
+
+.resource-card__link.emergency {
+    background-color: #c62828; /* A strong, clear red */
+    color: #ffffff;
+}
+.resource-card__link.emergency:hover {
+    background-color: #a02020;
+}

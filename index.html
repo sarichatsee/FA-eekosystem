@@ -29,8 +29,10 @@
             <nav class="nav" role="navigation" aria-label="Main navigation">
                 <ul>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Emergency Actions</a></li>
+                    <li><a href="#venomous-animal">Venomous Animals</a></li>
                     <li><a href="#safety">Safety Tips</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#resources">Resources</a></li>
                 </ul>
             </nav>
             <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -51,63 +53,30 @@
             </div>
         </section>
 
-        <section class="upload-section">
+        <section id="about" class="about-section">
             <div class="container">
-                <div class="upload-container">
-                    <div class="upload-area" id="uploadArea">
-                        <div class="upload-content">
-                            <i class="fas fa-cloud-upload-alt upload-icon" aria-hidden="true"></i>
-                            <h3>Upload or Take a Photo</h3>
-                            <p>Drag and drop an image here, or click to select a file</p>
-                            <div class="upload-buttons">
-                                <button type="button" class="btn btn-primary" id="selectFileBtn">
-                                    <i class="fas fa-folder-open" aria-hidden="true"></i>
-                                    Choose File
-                                </button>
-                                <button type="button" class="btn btn-secondary" id="takePictureBtn">
-                                    <i class="fas fa-camera" aria-hidden="true"></i>
-                                    Take Picture
-                                </button>
-                            </div>
-                        </div>
-                        <input type="file" id="fileInput" accept="image/*" style="display: none;" aria-label="Select image file">
-                        <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" aria-label="Take picture">
+                <h2>About Eek-o-system</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        <h3>Instant Safety Analysis</h3>
+                        <p>Our advanced AI quickly identifies potentially dangerous animals and provides immediate safety recommendations.</p>
                     </div>
-                    
-                    <div class="image-preview" id="imagePreview" style="display: none;">
-                        <div class="preview-container">
-                            <img id="previewImage" alt="Uploaded image preview">
-                            <button class="remove-image" id="removeImage" aria-label="Remove image">
-                                <i class="fas fa-times" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                        <button class="btn btn-primary analyze-btn" id="analyzeBtn">
-                            <i class="fas fa-search" aria-hidden="true"></i>
-                            Analyze Image
-                        </button>
+                    <div class="about-card">
+                        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                        <h3>Mobile-Friendly</h3>
+                        <p>Take pictures directly from your phone's camera or upload existing photos for instant analysis.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                        <h3>Emergency Guidance</h3>
+                        <p>Get clear instructions on whether immediate medical attention is needed and what steps to take.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="results-section" id="resultsSection" style="display: none;">
-            <div class="container">
-                <div class="results-container">
-                    <div class="loading" id="loadingSpinner">
-                        <div class="spinner"></div>
-                        <p>Analyzing image...</p>
-                    </div>
-                    
-                    <div class="results-content" id="resultsContent" style="display: none;">
-                        <h3>Analysis Results</h3>
-                        <div class="result-card" id="resultCard">
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="emergency-actions-section">
+                <section id="contact" class="emergency-actions-section">
             <div class="container">
                 <div class="emergency-actions">
                     <h2>
@@ -140,31 +109,186 @@
             </div>
         </section>
 
-        <!-- Botpress Chat Integration -->
-        <div id="botpress-webchat"></div>
-
-        <section id="about" class="about-section">
+        <section id="venomous-animal" class="venomous-snakes-showcase">
             <div class="container">
-                <h2>About Eek-o-system</h2>
-                <div class="about-grid">
-                    <div class="about-card">
-                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                        <h3>Instant Safety Analysis</h3>
-                        <p>Our advanced AI quickly identifies potentially dangerous animals and provides immediate safety recommendations.</p>
+                <section class="flip-showcase">
+            <div class="flip-showcase__container">
+                <h2 class="flip-showcase__title">Venomous Animals Showcase</h2>
+                <div class="flip-showcase__grid">
+
+                    <div class="flip-card">
+                        <div class="flip-card__inner">
+                            <div class="flip-card__front">
+                                <img src="https://facts.net/wp-content/uploads/2021/08/King-Cobra-snake-in-Uganda.jpg" alt="King Cobra in a defensive posture">
+                            </div>
+                            <div class="flip-card__back">
+                                <h3 class="flip-card__title">King Cobra</h3>
+                                <div class="flip-card__content">
+                                    <h4>Description</h4>
+                                    <p>The <strong>world's longest</strong> venomous snake. It's known for the intimidating hood it flares when threatened.</p>
+                                    <h4>Habitat</h4>
+                                    <p>Rainforests and plains of <strong>India, southern China, and Southeast Asia</strong>.</p>
+                                    <h4>Did You Know?</h4>
+                                    <p>This is the only snake in the world that builds a nest for its eggs. 🐍</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="about-card">
-                        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
-                        <h3>Mobile-Friendly</h3>
-                        <p>Take pictures directly from your phone's camera or upload existing photos for instant analysis.</p>
+
+                    <div class="flip-card">
+                        <div class="flip-card__inner">
+                            <div class="flip-card__front">
+                                <img src="https://images.squarespace-cdn.com/content/v1/5b4b10e19d5abb222d2069fe/1649900553652-FQYH5KV2WNBY9XIPZIGL/Blue+Malayan+Coral+Snake+-+Calliophis+bivirgatus+II-4.jpg" alt="Blue Malaysian Coral Snake showing its vibrant colors">
+                            </div>
+                            <div class="flip-card__back">
+                                <h3 class="flip-card__title">Blue Malaysian Coral Snake</h3>
+                                <div class="flip-card__content">
+                                    <h4>Description</h4>
+                                    <p>A beautiful snake with electric blue stripes and a vibrant red head and tail. Its venom is a potent neurotoxin.</p>
+                                    <h4>Habitat</h4>
+                                    <p>Lowland forests of <strong>Thailand, Malaysia, Singapore, and western Indonesia</strong>.</p>
+                                    <h4>Did You Know?</h4>
+                                    <p>It has venom glands that extend for about a third of its body length. 💙</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="about-card">
-                        <i class="fas fa-heart" aria-hidden="true"></i>
-                        <h3>Emergency Guidance</h3>
-                        <p>Get clear instructions on whether immediate medical attention is needed and what steps to take.</p>
+
+                    <div class="flip-card">
+                        <div class="flip-card__inner">
+                            <div class="flip-card__front">
+                                <img src="https://th.bing.com/th/id/OIP.6CHKHesQ2M5c7D3uoXBYfAHaD7?w=338&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="Common Seasnake swimming in the ocean">
+                            </div>
+                            <div class="flip-card__back">
+                                <h3 class="flip-card__title">Common Seasnake</h3>
+                                <div class="flip-card__content">
+                                    <h4>Description</h4>
+                                    <p>Also known as the Yellow-bellied Seasnake, it has a dark back, yellow belly, and a paddle-like tail.</p>
+                                    <h4>Habitat</h4>
+                                    <p>The tropical and subtropical waters of the <strong>Indian and Pacific Oceans</strong>.</p>
+                                    <h4>Did You Know?</h4>
+                                    <p>This is one of the most widely distributed snakes and is fully adapted to a marine life. 🌊</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card">
+                        <div class="flip-card__inner">
+                            <div class="flip-card__front">
+                                <img src="https://spiderzoon.com/wp-content/uploads/2025/05/Brown-House-Spiders-1024x576.jpg" alt="Brown House Spider on its web">
+                            </div>
+                            <div class="flip-card__back">
+                                <h3 class="flip-card__title">Brown House Spider</h3>
+                                <div class="flip-card__content">
+                                    <h4>Description</h4>
+                                    <p>A small, brownish spider with a globular abdomen, it's often <strong>mistaken for its more venomous relative</strong>, the Black Widow.</p>
+                                    <h4>Habitat</h4>
+                                    <p>Extremely common inside homes worldwide, they love <strong>dark, undisturbed corners</strong> like cupboards and window frames.</p>
+                                    <h4>Did You Know?</h4>
+                                    <p>This spider is an expert at <strong>feigning death (thanatosis)</strong>; it will drop from its web, curl up, and remain motionless if disturbed. 🕷️</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card">
+                    <div class="flip-card__inner">
+                        <div class="flip-card__front">
+                            <img src="https://www.nparks.gov.sg/-/media/ffw/migrated/round2/fauna/350/28503c499ac74acd91b6d16b512f39ee.jpg" alt="A large, hairy tarantula">
+                        </div>
+                        <div class="flip-card__back">
+                            <h3 class="flip-card__title">Tarantula</h3>
+                            <div class="flip-card__content">
+                                <h4>Description</h4>
+                                <p>Tarantulas are <strong>large and hairy arachnids</strong>, whose bite, while painful, is generally not dangerous to humans.</p>
+                                <h4>Habitat</h4>
+                                <p>They are found worldwide in various climates, often living in <strong>burrows or natural crevices</strong> in the ground.</p>
+                                <h4>Did You Know?</h4>
+                                <p>When threatened, many New World tarantulas can <strong>flick urticating hairs</strong> from their abdomen at attackers. 🕷️</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                <div class="flip-card__inner">
+                    <div class="flip-card__front">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Hermodice_carunculata_%28Bearded_Fireworm%29.jpg/500px-Hermodice_carunculata_%28Bearded_Fireworm%29.jpg " alt="A colorful bearded fireworm on a reef">
+                    </div>
+                    <div class="flip-card__back">
+                        <h3 class="flip-card__title">Bearded Fireworm</h3>
+                        <div class="flip-card__content">
+                            <h4>Description</h4>
+                            <p>A type of marine bristleworm, its body is covered in white, <strong>venom-filled bristles</strong> that deliver a painful sting if touched.</p>
+                            <h4>Habitat</h4>
+                            <p>Found in tropical waters on <strong>reefs, seagrass, and sandy bottoms</strong>, often hiding under rocks and in crevices.</p>
+                            <h4>Did You Know?</h4>
+                            <p>If broken into pieces, a fireworm can often <strong>regenerate parts of its body</strong>, making it incredibly resilient. 🔥</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="flip-card">
+            <div class="flip-card__inner">
+                <div class="flip-card__front">
+                    <img src="https://th.bing.com/th/id/OIP.Dkvi_rcEZ-PrEesm5cqDHgHaEK?w=320&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="A glossy black Asian Forest Scorpion">
+                </div>
+                <div class="flip-card__back">
+                    <h3 class="flip-card__title">Asian Forest Scorpion</h3>
+                    <div class="flip-card__content">
+                        <h4>Description</h4>
+                        <p>A large, glossy black scorpion popular in the pet trade. It has a <strong>mild venom similar to a bee sting</strong> and is not considered dangerous.</p>
+                        <h4>Habitat</h4>
+                        <p>It lives in burrows on the forest floor in the <strong>humid forests of Southeast Asia</strong>, including Malaysia and Indonesia.</p>
+                        <h4>Did You Know?</h4>
+                        <p>Under an ultraviolet light, this scorpion will <strong>glow a vibrant blue-green</strong> due to fluorescent chemicals in its cuticle. 🦂</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card">
+        <div class="flip-card__inner">
+            <div class="flip-card__front">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.Dt08xsIzTkLOLgX9KChEzgHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="A translucent Moon Jellyfish">
+            </div>
+            <div class="flip-card__back">
+                <h3 class="flip-card__title">Moon Jellyfish</h3>
+                <div class="flip-card__content">
+                    <h4>Description</h4>
+                    <p>Easily recognized by its <strong>four pinkish, horseshoe-shaped gonads</strong> visible through its translucent bell. Its sting is harmless to humans.</p>
+                    <h4>Habitat</h4>
+                    <p>An incredibly widespread species found in <strong>oceans worldwide</strong>, particularly in coastal and estuary waters.</p>
+                    <h4>Did You Know?</h4>
+                    <p>This jellyfish navigates its entire life without a <strong>brain or a heart</strong>, relying on a simple net of nerves. 🌙</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="flip-card">
+        <div class="flip-card__inner">
+            <div class="flip-card__front">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.OuuVjOv86VEdVla4zHukJwHaFc?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mosaic Reef Crab with its distinctive pattern">
+            </div>
+            <div class="flip-card__back">
+                <h3 class="flip-card__title">Mosaic Reef Crab</h3>
+                <div class="flip-card__content">
+                    <h4>Description</h4>
+                    <p>Known for its distinctive reddish-brown mosaic pattern. This crab is <strong>highly poisonous to eat</strong> due to a powerful neurotoxin.</p>
+                    <h4>Habitat</h4>
+                    <p>It lives among coral and rubble on <strong>Indo-Pacific coral reefs</strong>, including those in Singapore.</p>
+                    <h4>Did You Know?</h4>
+                    <p>Unlike venom, its deadly <strong>toxin is not destroyed by cooking</strong>, making it one of the most dangerous crabs to consume. 🦀</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+                    </div>
+
+                </div>
+            </div>
         </section>
+
+        <div id="botpress-webchat"></div>
+
 
         <section id="safety" class="safety-section">
             <div class="container">
@@ -240,8 +364,84 @@
             </div>
         </section>
     </main>
+    <section id="resources" class="resources-hub">
+    <div class="resources-hub__container">
+        <h2 class="resources-hub__title">Essential Resources</h2>
+        <p class="resources-hub__intro">
+            When in doubt, always contact the professionals. Here are official and expert organizations in Singapore you can rely on for help and information.
+        </p>
+        <div class="resources-hub__grid">
 
-    <footer id="contact" class="footer">
+            <div class="resource-card">
+                <div class="resource-card__icon">
+                    <i class="fas fa-ambulance"></i>
+                </div>
+                <h3 class="resource-card__name">SCDF (Emergency)</h3>
+                <p class="resource-card__description">
+                    For life-threatening situations, including severe allergic reactions, breathing difficulties, or loss of consciousness.
+                </p>
+                <a href="tel:995" class="resource-card__link emergency">
+                    <i class="fas fa-phone-alt"></i> Call 995
+                </a>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-card__icon">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <h3 class="resource-card__name">ACRES Wildlife Rescue</h3>
+                <p class="resource-card__description">
+                    Contact their 24/7 hotline if you encounter a wild animal that is injured, in distress, or in a dangerous situation.
+                </p>
+                <a href="tel:+6597837782" class="resource-card__link hotline">
+                    <i class="fas fa-phone-alt"></i> Call 24/7 Hotline
+                </a>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-card__icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h3 class="resource-card__name">NParks (National Parks)</h3>
+                <p class="resource-card__description">
+                    For official advisories on wildlife, park information, and to report non-urgent animal sightings or issues.
+                </p>
+                <a href="https://www.nparks.gov.sg/" class="resource-card__link" target="_blank" rel="noopener noreferrer">
+                    Visit Website
+                </a>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-card__icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3 class="resource-card__name">Ministry of Health (MOH)</h3>
+                <p class="resource-card__description">
+                    Provides official health guidelines, information on infectious diseases, and advice on staying healthy.
+                </p>
+                <a href="https://www.moh.gov.sg/" class="resource-card__link" target="_blank" rel="noopener noreferrer">
+                    Visit Website
+                </a>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-card__icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <h3 class="resource-card__name">NEA (Environment Agency)</h3>
+                <p class="resource-card__description">
+                    For information and reporting on pest issues such as mosquito breeding, hornets' nests, or rodent infestations.
+                </p>
+                <a href="https://www.nea.gov.sg/corporate-functions/feedback" class="resource-card__link" target="_blank" rel="noopener noreferrer">
+                    Report an Issue
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -452,8 +652,12 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary close-modal-btn">Close</button>
             </div>
+        
+            
         </div>
+        <div>
     </div>
+    
 
     <script src="script.js"></script>
 </body>
