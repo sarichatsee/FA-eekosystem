@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eek-o-system - Animal Safety Analyzer</title>
     <meta name="description"
-        content="Upload or take a photo to analyze if animals are venomous or poisonous and get immediate safety advice">
+        content="Learn about venomous and poisonous animals and get immediate safety advice for emergency situations">
 
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
     <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js" defer></script>
     <script src="https://files.bpcontent.cloud/2025/07/01/13/20250701135547-Y3S4E6G2.js" defer></script>
@@ -52,8 +52,7 @@
             <div class="container">
                 <div class="hero-content">
                     <h2>Identify Dangerous Animals Instantly</h2>
-                    <p>Upload or take a photo of any animal and our AI will analyze whether it's venomous or poisonous,
-                        providing immediate safety guidance.</p>
+                    <p>Learn about venomous and poisonous animals with our comprehensive guide and get immediate safety guidance for emergency situations.</p>
                 </div>
             </div>
         </section>
@@ -71,8 +70,7 @@
                     <div class="about-card">
                         <i class="fas fa-mobile-alt" aria-hidden="true"></i>
                         <h3>Mobile-Friendly</h3>
-                        <p>Take pictures directly from your phone's camera or upload existing photos for instant
-                            analysis.</p>
+                        <p>Access our comprehensive animal safety guide directly from your phone with an optimized mobile experience.</p>
                     </div>
                     <div class="about-card">
                         <i class="fas fa-heart" aria-hidden="true"></i>
@@ -106,11 +104,6 @@
                             <i class="fas fa-hospital" aria-hidden="true"></i>
                             <span>Find Hospital</span>
                             <small>Nearest emergency room</small>
-                        </button>
-                        <button class="emergency-btn telemedicine" onclick="startTelemedicine()">
-                            <i class="fas fa-video" aria-hidden="true"></i>
-                            <span>Telemedicine</span>
-                            <small>Video consultation</small>
                         </button>
                     </div>
                 </div>
@@ -357,9 +350,9 @@
                         <h3>⚠️ If Bitten or Stung</h3>
                         <ul>
                             <li>Stay calm and don't panic.</li>
-                            <li>Remove any jewelry near the bite/sting.</li>
+                            <li>Remove any jewelry or tight items near the site.</li>
                             <li>Keep the affected area below heart level if venomous.</li>
-                            <li>Seek immediate medical attention.</li>
+                            <li>Seek immediate medical help if symptoms worsen.</li>
                             <li>Call emergency services (995) if severe symptoms occur.</li>
                         </ul>
                         <button class="btn btn-primary view-more-tips" data-modal-target="bittenStungModal">View
@@ -386,7 +379,6 @@
                             <li>Avoid disturbing wild animals (monkeys, snakes, boars).</li>
                             <li>Check footwear, bags, and clothing if left outdoors.</li>
                             <li>Stay on marked paths in nature parks and reserves.</li>
-                            <li>Be aware of hiding spots for scorpions/centipedes.</li>
                         </ul>
                         <button class="btn btn-primary view-more-tips" data-modal-target="preventionModal">View
                             More</button>
@@ -808,6 +800,83 @@
 
 
         <script src="script.js"></script>
+        
+        <!-- Modern UI Enhancements -->
+        <script>
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth reveal animations for cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply animation to cards when DOM loads
+            document.addEventListener('DOMContentLoaded', () => {
+                const animatedElements = document.querySelectorAll('.about-card, .emergency-btn, .tip-card, .resource-card');
+                animatedElements.forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                    observer.observe(el);
+                });
+            });
+
+            // Enhanced button interactions
+            document.querySelectorAll('.btn, .emergency-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function(e) {
+                    const ripple = document.createElement('div');
+                    ripple.classList.add('ripple');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.3);
+                        pointer-events: none;
+                        width: 100px;
+                        height: 100px;
+                        left: ${e.offsetX - 50}px;
+                        top: ${e.offsetY - 50}px;
+                        animation: ripple 0.6s ease-out;
+                        z-index: 1;
+                    `;
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+
+            // Add ripple animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    from {
+                        transform: scale(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
 </body>
 
 </html>
