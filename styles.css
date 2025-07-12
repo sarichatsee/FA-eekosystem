@@ -6,14 +6,51 @@
     Personality: Comforting, Sleek, Modern, Nature-Inspired
 */
 
+/* --- Quick Segoe UI Override --- */
+:root {
+  --font-primary: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-secondary: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  font-family: var(--font-secondary) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary) !important;
+}
+
 /* --- 0. CSS Variables (Modern Teal Design System) --- */
 :root {
+  /* Apply the new font variables */
+  body {
+    font-family: var(--font-secondary) !important;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-primary) !important;
+  }
+
   /* Modern Teal Color Palette - Primary Scheme */
   --primary-color: rgb(20, 199, 175); /* Vibrant teal - Main brand color */
-  --primary-light: rgba(20, 199, 175, 0.7); /* Light teal - Accent & highlights */
+  --primary-light: rgba(
+    20,
+    199,
+    175,
+    0.7
+  ); /* Light teal - Accent & highlights */
   --primary-dark: #58b19f; /* Muted teal - Active states */
   --primary-ultra-dark: #2d5a52; /* Deep teal for text accents */
-  
+
   /* Supporting Teal Shades */
   --teal-primary: rgb(20, 199, 175); /* Vibrant teal */
   --teal-secondary: #58b19f; /* Muted teal */
@@ -21,7 +58,11 @@
   --teal-light: rgba(20, 199, 175, 0.1); /* Light teal background */
   --teal-ultra-light: rgba(20, 199, 175, 0.05); /* Very light teal */
   --teal-gradient: linear-gradient(135deg, rgb(20, 199, 175) 0%, #58b19f 100%);
-  --teal-gradient-soft: linear-gradient(135deg, rgba(20, 199, 175, 0.8) 0%, rgba(88, 177, 159, 0.6) 100%);
+  --teal-gradient-soft: linear-gradient(
+    135deg,
+    rgba(20, 199, 175, 0.8) 0%,
+    rgba(88, 177, 159, 0.6) 100%
+  );
   --teal-glow: rgba(20, 199, 175, 0.3);
 
   /* Neutral Colors */
@@ -51,14 +92,26 @@
 
   /* Modern Teal Gradients */
   --gradient-primary: var(--teal-gradient);
-  --gradient-light: linear-gradient(135deg, rgba(20, 199, 175, 0.6) 0%, rgba(124, 199, 187, 0.4) 100%);
-  --gradient-hero: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 90, 82, 0.9) 100%);
-  --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 255, 254, 0.8) 100%);
-  --gradient-modern: linear-gradient(135deg, #ffffff 0%, var(--teal-ultra-light) 100%);
-
-  /* Typography */
-  --font-primary: "Quicksand", sans-serif; /* Headings */
-  --font-secondary: "Open Sans", sans-serif; /* Body text */
+  --gradient-light: linear-gradient(
+    135deg,
+    rgba(20, 199, 175, 0.6) 0%,
+    rgba(124, 199, 187, 0.4) 100%
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(45, 90, 82, 0.9) 100%
+  );
+  --gradient-card: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 255, 254, 0.8) 100%
+  );
+  --gradient-modern: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--teal-ultra-light) 100%
+  );
 
   /* Enhanced Spacing Scale */
   --spacing-xs: 0.5rem; /* 8px */
@@ -381,85 +434,73 @@ ul {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* Mobile Navigation */
-@media (max-width: 768px) {
-  .header .container {
-    flex-wrap: wrap;
-    position: relative;
-  }
-
-  .logo {
-    flex-grow: 1;
-  }
-
-  .logo-image {
-    height: 3.2rem;
-  }
-
-  .logo h1 {
-    font-size: 1.5rem;
-  }
-
-  .menu-toggle {
-    display: flex;
-    margin-left: auto;
-  }
-
-  .nav {
-    order: 3;
-    width: 100%;
-    position: relative;
-  }
-
+/* -------------------------------------------------
+   Tablet & small desktops: wrap + shrink links
+   ------------------------------------------------- */
+@media (max-width: 768px) and (min-width: 481px) {
   .nav ul {
     display: flex;
-    flex-direction: column;
-    margin: var(--spacing-sm) 0 0 0;
-    text-align: center;
-    background: #ffffff !important;
-    border: 1px solid #e0e0e0;
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-md);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    gap: var(--spacing-xs);
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-15px) scale(0.95);
-    transition: all 0.3s ease-out;
+    flex-wrap: wrap; /* allow items to wrap to next line */
+    justify-content: center; /* center them if they wrap */
+    gap: var(--spacing-md); /* consistent gutters */
   }
 
-  .nav ul.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
+  .nav li {
+    flex: 1 1 auto; /* let each link grow/shrink */
   }
 
   .nav a {
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: var(--spacing-md);
-    margin: var(--spacing-xs) 0;
-    border-radius: var(--radius-sm);
-    background-color: transparent;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    white-space: nowrap; /* prevent mid‐word breaks */
+    font-size: clamp(0.8rem, 1.2vw, 1rem); /* fluid text size */
+    padding: 0.5rem 0.75rem; /* smaller padding */
+  }
+}
+
+/* -------------------------------------------------
+   True mobile: collapse under hamburger at 480px
+   ------------------------------------------------- */
+@media (max-width: 480px) {
+  /* show hamburger */
+  .menu-toggle {
+    display: block;
   }
 
+  /* collapse nav as before—but only <480px now */
+  .nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+  .nav.active {
+    max-height: 500px;
+  }
+  .nav ul {
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-sm) 0;
+    padding: var(--spacing-sm) 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  .nav a {
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
   .nav a:last-child {
     border-bottom: none;
   }
+}
 
-  .nav a:hover,
-  .nav a:focus {
-    background-color: var(--primary-color);
-    color: white;
-    transform: none;
-  }
+.nav a:last-child {
+  border-bottom: none;
+}
+
+.nav a:hover,
+.nav a:focus {
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
 /* --- 4. Hero Section (Modern & Impactful) --- */
@@ -490,11 +531,7 @@ ul {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(
-    circle,
-    var(--teal-glow) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
   animation: float 6s ease-in-out infinite;
   z-index: 1;
 }
@@ -510,7 +547,7 @@ ul {
   z-index: 2;
 }
 
-@keyframes float {
+/* @keyframes float {
   0%,
   100% {
     transform: translate(0, 0) rotate(0deg);
@@ -518,7 +555,7 @@ ul {
   50% {
     transform: translate(-20px, -20px) rotate(2deg);
   }
-}
+} */
 
 .hero-content {
   position: relative;
@@ -1191,7 +1228,11 @@ ul {
 }
 
 .emergency-btn.telemedicine:hover {
-  background: linear-gradient(135deg, var(--teal-secondary) 0%, var(--teal-tertiary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--teal-secondary) 0%,
+    var(--teal-tertiary) 100%
+  );
   color: var(--text-light);
   transform: translateY(-8px) scale(1.02);
   box-shadow: var(--shadow-teal-strong);
@@ -1409,7 +1450,11 @@ ul {
 }
 
 .safety-section {
-  background: linear-gradient(135deg, var(--cream-dark) 0%, var(--teal-ultra-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--cream-dark) 0%,
+    var(--teal-ultra-light) 100%
+  );
 }
 
 .about-section::before,
