@@ -2079,6 +2079,14 @@ ul {
     transition: color 0.3s ease-in-out;
 }
 
+.resource-card__logo {
+    width: auto;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
 .resource-card:hover .resource-card__icon {
     color: var(--primary-color);
 }
