@@ -2068,19 +2068,23 @@ ul {
 }
 /* --- END: Specific Botpress Webchat Styling --- */
 
-/* --- 8. Venomous Animals Showcase --- */
+/* --- 8. Venomous Animals Showcase (Improved Styles) --- */
+
+/* Section background */
 .venomous-snakes-showcase {
   padding: var(--spacing-2xl) 0;
-  background: var(--bg-secondary);
+  background: var(--bg-secondary); /* cool-toned near-black */
 }
 
+/* Centered container */
 .flip-showcase__container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 2rem;
+  padding: 2rem;
   text-align: center;
 }
 
+/* Title */
 .flip-showcase__title {
   margin-bottom: var(--spacing-xl);
   font-size: 2.5rem;
@@ -2088,6 +2092,7 @@ ul {
   font-weight: 700;
 }
 
+/* Grid layout */
 .flip-showcase__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -2095,6 +2100,7 @@ ul {
   justify-items: center;
 }
 
+/* Card wrapper */
 .flip-card {
   width: 100%;
   max-width: 500px;
@@ -2103,33 +2109,47 @@ ul {
   position: relative;
 }
 
+/* Inner flip panel with animated border (from previous snippet) */
 .flip-card__inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
   border-radius: var(--radius-lg);
+  border: 4px solid transparent;
   box-shadow: var(--shadow-md);
-  z-index: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  background: linear-gradient(#1f2428, #1f2428) padding-box,
+    linear-gradient(
+        90deg,
+        var(--glow-color) 0%,
+        transparent 25%,
+        var(--glow-color) 50%,
+        transparent 75%,
+        var(--glow-color) 100%
+      )
+      border-box;
+  background-size: 200% 200%;
+  animation: gradient-shimmer 3s linear infinite;
 }
 
+/* Flip on hover */
 .flip-card:hover .flip-card__inner {
   transform: rotateY(180deg);
 }
 
+/* Front & back faces */
 .flip-card__front,
 .flip-card__back {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: rgba(33, 33, 33, 0.6);
 }
 
+/* Front image */
 .flip-card__front img {
   width: 100%;
   height: 100%;
@@ -2137,50 +2157,85 @@ ul {
   border-radius: var(--radius-lg);
 }
 
+/* Back face styling */
 .flip-card__back {
-  background: var(--gradient-primary);
-  color: var(--text-light);
   transform: rotateY(180deg);
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: linear-gradient(145deg, #1f2428, #293033);
 }
 
+/* Title inside card */
 .flip-card__title {
-  margin: 0 0 var(--spacing-md) 0;
-  font-size: clamp(1.25rem, 4vw, 1.5rem);
-  color: var(--primary-light);
-  font-weight: 700;
+  font-size: clamp(1rem, calc(0.9rem + 1vw), 1.5rem);
+  font-weight: 1000;
   text-align: center;
+  color: rgb(20, 199, 175);
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
+/* Content wrapper with hidden scrollbar */
+.flip-card__content {
+  max-height: calc(100% - 3.5rem);
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.flip-card__content::-webkit-scrollbar {
+  width: 0;
+  height: 0; /* Chrome, Safari, Opera */
+}
+
+/* Section headings */
 .flip-card__content h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
-  color: var(--primary-light);
+  margin: var(--spacing-sm) 0 var(--spacing-xs);
+  font-size: clamp(0.85rem, calc(0.8rem + 0.5vw), 1.1rem);
+  line-height: 1.2;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: #58b19f; /* teal accent */
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
+/* Paragraph text */
 .flip-card__content p {
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  line-height: 1.5;
-  margin: 0 0 var(--spacing-sm) 0;
-  color: var(--text-light);
+  margin: 0 0 var(--spacing-sm);
+  font-size: clamp(0.75rem, calc(0.7rem + 0.5vw), 1rem);
+  line-height: 1.4;
+  color: #e0e0e0;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
+/* Strong text accent */
 .flip-card__content p strong {
-  color: var(--primary-light);
+  color: #a3e4d7; /* lighter teal for emphasis */
 }
 
+/* Shimmer animation */
+@keyframes gradient-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive tweaks */
 @media (max-width: 768px) {
   .flip-showcase__grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
-
   .flip-card {
     max-width: 100%;
     height: auto;
