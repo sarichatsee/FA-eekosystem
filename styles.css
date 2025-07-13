@@ -2041,7 +2041,6 @@ ul {
   max-width: 500px;
   height: 400px;
   perspective: 1000px;
-  position: relative;
 }
 
 .flip-card__inner {
@@ -2058,27 +2057,6 @@ ul {
   transform: rotateY(180deg);
 }
 
-/* Venomous animal color variants */
-.flip-card[data-animal="snake"] {
-  --glow-color: #ff6b35; /* Orange-red for snakes */
-}
-
-.flip-card[data-animal="spider"] {
-  --glow-color: #8b0000; /* Dark red for spiders */
-}
-
-.flip-card[data-animal="scorpion"] {
-  --glow-color: #ffd700; /* Gold for scorpions */
-}
-
-.flip-card[data-animal="jellyfish"] {
-  --glow-color: #00e6fd; /* Cyan for jellyfish */
-}
-
-.flip-card[data-animal="frog"] {
-  --glow-color: #32cd32; /* Lime green for poison frogs */
-}
-
 .flip-card__front,
 .flip-card__back {
   position: absolute;
@@ -2088,67 +2066,22 @@ ul {
   backface-visibility: hidden;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  padding: 4px; /* Space for glowing border */
-}
-
-/* Glowing border for front side */
-.flip-card__front::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: conic-gradient(
-    from 0deg,
-    var(--glow-color, #ff6b35),
-    transparent 30%,
-    transparent 70%,
-    var(--glow-color, #ff6b35)
-  );
-  border-radius: var(--radius-lg);
-  animation: venomousGlow 3s linear infinite;
-  z-index: 1;
-}
-
-/* Glowing border for back side */
-.flip-card__back::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: conic-gradient(
-    from 0deg,
-    var(--glow-color, #ff6b35),
-    transparent 30%,
-    transparent 70%,
-    var(--glow-color, #ff6b35)
-  );
-  border-radius: var(--radius-lg);
-  animation: venomousGlow 3s linear infinite;
-  z-index: 1;
-}
-
-.flip-card__back {
-  transform: rotateY(180deg);
 }
 
 .flip-card__front img {
-  position: relative;
-  width: calc(100% - 8px);
-  height: calc(100% - 8px);
-  margin: 4px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: calc(var(--radius-lg) - 4px);
-  z-index: 2;
 }
 
-.flip-card__back > * {
-  position: relative;
-  z-index: 2;
-  margin: 4px;
+.flip-card__back {
+  background: var(--gradient-primary);
+  color: var(--text-light);
+  transform: rotateY(180deg);
+  padding: var(--spacing-lg);
+  display: flex-start;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .flip-card__title {
@@ -2157,10 +2090,6 @@ ul {
   color: var(--primary-light);
   font-weight: 700;
   text-align: center;
-}
-
-.flip-card__content {
-  padding: 0 var(--spacing-md);
 }
 
 .flip-card__content h4 {
@@ -2183,15 +2112,6 @@ ul {
   color: var(--primary-light);
 }
 
-@keyframes venomousGlow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 @media (max-width: 768px) {
   .flip-showcase__grid {
     grid-template-columns: 1fr;
@@ -2202,12 +2122,6 @@ ul {
     max-width: 100%;
     height: auto;
     min-height: 350px;
-  }
-
-  /* Adjust glow effect for mobile */
-  .flip-card__front::before,
-  .flip-card__back::before {
-    animation-duration: 4s; /* Slower animation on mobile */
   }
 }
 
